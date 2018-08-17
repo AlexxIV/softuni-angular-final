@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { StudentComponent } from './student/student.component';
 // import { SigninComponent } from './auth/signin/signin.component';
 // import { SignupComponent } from './auth/signup/signup.component';
 // import { AuthGuard } from './auth/auth.guard';
@@ -13,6 +14,9 @@ const routes: Route[] = [
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent }
         ]
+    },
+    {
+        path: 'home', component: StudentComponent
     },
     {
         path: '**', redirectTo: '/user/login'

@@ -10,7 +10,7 @@ import { UserLogin } from './models/user-login';
 })
 
 export class AuthService {
-    token: string;
+    currentUser: UserRegister
     baseUrl: string = 'http://localhost:8000/user/';
     registerUrl: string = 'register';
     loginUrl: string = 'login';
@@ -33,14 +33,19 @@ export class AuthService {
 
     logout() {
         localStorage.clear();
+        this.router.navigate(['/']);
     }
 
-    getToken() : string {
-        return localStorage.getItem('token');
+    _isAuthenticated() : boolean {
+        return localStorage.getItem('currentUser') !== null;
     }
 
-    isAuthenticated() : boolean {
-        return this.getToken() !== null;
+    _userNameHelper() : string {
+        return JSON.parse(localStorage.getItem('currentUser')).firstname;
+    }
+
+    _userRoleHelper() : string {
+        return JSON.parse(localStorage.getItem('currentUser')).userRole;
     }
 
 }

@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { StudentComponent } from './student/student.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 if (res instanceof HttpResponse && res.body.token) {
                     this.SaveToken(res.body);
                     this.toastr.success(res.body.message, 'Success!');
-                    this.router.navigate(['/']); // TODO
+                    this.router.navigate(['/home']); // TODO
                 }
 
                 if (res instanceof HttpResponse && res.body.success && res.url.endsWith('register')) {

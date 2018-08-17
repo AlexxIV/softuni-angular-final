@@ -11,15 +11,20 @@
         <a class="nav-link" routerLink="/">Home</a>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" *ngIf="!authService._isAuthenticated()">
       <li class="nav-item">
         <a class="nav-link" routerLink="/user/login">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/user/register">Register</a>
       </li>
+    </ul>
+    <ul class="navbar-nav ml-auto" *ngIf="authService._isAuthenticated()">
       <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
+        <span class="nav-link">Hi {{authService._userNameHelper()}}!</span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href (click)="authService.logout()">Logout</a>
       </li>
     </ul>
   </div>
