@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form #registrationForm="ngForm" (ngSubmit)="register()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+        type="email" 
+        id="email"
+        name="email"
+        class="form-control"
+        [(ngModel)]="userModel.email"
+        required
+        #email="ngModel"
+        email
+        >
+        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            <span>Please provide a valid email</span>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input 
+        type="text" 
+        id="firstname"
+        name="firstname"
+        class="form-control"
+        [(ngModel)]="userModel.firstname"
+        required
+        #firstname="ngModel"
+        pattern="^[A-Z]+[A-Za-z]*$" 
+        >
+        <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
+          First name must start with a capital letter and must contain only letters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input 
+        type="text" 
+        id="lastname"
+        name="lastname"
+        class="form-control"
+        [(ngModel)]="userModel.lastname"
+        required
+        #lastname="ngModel"  
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          pattern="^.{3,30}"
+          class="form-control"
+          [(ngModel)]="userModel.password"
+          required
+          #password="ngModel"
+          >
+          <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+              Password must be atleast 3 symbols.
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmedPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmedPassword"
+          name="confirmedPassword"
+          class="form-control"
+          [(ngModel)]="userModel.confirmedPassword"
+          required
+          #confirmedPassword="ngModel"
+          >
+          <div [hidden]="password.value === confirmedPassword.value || confirmedPassword.pristine" class="alert alert-danger">
+            Both passwords should match
+          </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="registrationForm.invalid"  type="submit">Register</button>
+    </form>
+  </div>
+</div>
+
