@@ -21,7 +21,6 @@ export class AllCoursesComponent implements OnInit {
       .getAllCourses()
       .subscribe((response) => {
         this.courses = response['courses'];
-        console.log(this.courses);
       })
   }
 }

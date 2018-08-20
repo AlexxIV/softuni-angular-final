@@ -3,274 +3,254 @@
     .nav-link {
         cursor: pointer;
     }
-    .navbar-brand {
+    .logo {
         max-width: 80px;
         max-height: 80px;
-        position: absolute;
-        top: 0;
-        right: 0;
+    }
+    .container-left-nav {
+        $items: 4;
+        $transition-duration: 0.5s;
+        $transition-delay: 0.05s;
+        width: 100%;
+        height: 80px;
+        float: left;
+        /* Toggle functionality */
+        // To hide the checkbox
+        #toggle {
+            position: absolute;
+            display: none;
+        }
+        #toggle:focus {
+            &~.toggle-container .button-toggle {
+                box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
+            }
+        } // Styles for the 'open' state, if the checkbox is checked
+        #toggle:checked {
+            // Any element you need to change the style if menu is open goes here, using the sibling selector (~) as follows
+            // Making the "X" icon using `:before` and `:after` pseudo-elements
+            &~.toggle-container .button-toggle {
+                box-shadow: 0 0 0 450px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1), 0 0 0 8px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1);
+                &:hover {
+                    box-shadow: 0 0 0 450px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1), 0 0 0 8px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1);
+                }
+                &:before {
+                    transform: translateY(-50%) rotate(45deg) scale(1);
+                }
+                &:after {
+                    transform: translateY(-50%) rotate(-45deg) scale(1);
+                }
+            }
+            &:focus~.toggle-container .button-toggle {
+                //box-shadow: 0 0 0 550px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1), 0 0 0 8px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1);
+            } // Open nav
+            &~.nav {
+                pointer-events: auto;
+                transform: translate(50px, 50px);
+                width: 200px;
+                height: auto;
+                max-width: 250px;
+                margin-left: -38px; // margin-top: 50px;
+                @media (max-width: 1024px) {
+                    max-width: 180px;
+                } // Restoring nav items from "lines" in the menu icon
+                .nav-item {
+                    color: #fffff9;
+                    font-size: 15px;
+                    font-weight: 900;
+                    letter-spacing: 0;
+                    height: 60px;
+                    line-height: 60px;
+                    margin-top: 15px;
+                    opacity: 1;
+                    transform: scaleY(1);
+                    transition: $transition-duration, opacity 0.1s;
+                    cursor: pointer;
+                    border-bottom: 1px solid #e8ffff;
+                    display: inline-block;
+                    width: 100%;
+                    &.account {
+                        border-bottom: none;
+                        height: 0;
+                        margin-top: 45px;
+                    }
+                    &:last-child {
+                        border-bottom: none;
+                        margin-top: 0;
+                    }
+                    &:hover {
+                        color: #fa473e;
+                        text-decoration: none;
+                        border-bottom: 1px solid #fa473e;
+                        &:last-child,
+                        &.account {
+                            border-bottom: none;
+                        }
+                    } // Setting delays for the nav items in open transition
+                    @for $i from 1 through $items {
+                        &:nth-child(#{$i}) {
+                            $delay: ($items - $i) * $transition-delay;
+                            transition-delay: $delay;
+                            &:before {
+                                transition-delay: $delay;
+                            }
+                        }
+                    } // Hiding the lines
+                    &:before {
+                        opacity: 0;
+                    }
+                }
+                .button-toggle {
+                    margin: 12px 1.5vw 22px 8px !important;
+                }
+            }
+        }
+        /* Toggle button */
+        .button-toggle {
+            position: absolute;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            margin: 17px 2.5vw 0 5px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 100%;
+            transition: $transition-duration + 0.1; // Shadow on hover
+            &:hover {
+                box-shadow: 0 0 0 8px rgba(22, 22, 40, 0.1), inset 0 0 0 30px rgba(22, 22, 40, 0.1);
+                border-radius: 100%;
+                margin: 17px 2.5vw 0 5px;
+            } // Making the "X" icon using `:before` and `:after` pseudo-elements
+            // Initially hidden because `scale(0)` transformation
+            &:before,
+            &:after {
+                position: absolute;
+                content: '';
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: #fa473e;
+                border-radius: 5px;
+                transition: $transition-duration;
+            }
+            &:before {
+                transform: translateY(-50%) rotate(45deg) scale(0);
+            }
+            &:after {
+                transform: translateY(-50%) rotate(-45deg) scale(0);
+            }
+        }
+        /* Menu */
+        .nav {
+            display: block; //margin: 25px 25px 20px;
+            margin: 12px 1.5vw 22px 8px; // Don't want pointer-events as menu is closed
+            pointer-events: none;
+            transition: $transition-duration;
+        } // Showing nav items as lines, making up the hamburger menu icon
+        .nav-item {
+            position: relative;
+            display: inline-block;
+            float: left;
+            clear: both;
+            color: transparent;
+            font-size: 14px;
+            letter-spacing: -6.2px;
+            height: 7px;
+            line-height: 7px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transform: scaleY(0.2);
+            transition: $transition-duration, opacity 1s; // Setting delays for the nav items in close transition
+            @for $i from 1 through $items {
+                &:nth-child(#{$i}) {
+                    $delay: ($i - 1) * $transition-delay;
+                    transition-delay: $delay;
+                    &:before {
+                        transition-delay: $delay;
+                        background-color: #1a1a32;
+                    }
+                }
+            } // Adjusting width for the first line
+            &:nth-child(1) {
+                display: block;
+                width: 22px; //height: 15px;
+            } // Adjusting width for the second line
+            &:nth-child(2) {
+                display: block;
+                width: 16px; //height: 15px;
+                margin-top: 0;
+            } // Adjusting width for the third line
+            &:nth-child(3) {
+                display: block;
+                width: 22px; //height: 15px;
+                margin-top: 0;
+            } // Adjusting from the fourth element onwards
+            &:nth-child(n + 4) {
+                letter-spacing: -8px;
+                margin-top: -7px;
+                opacity: 0;
+            } // Getting the lines for the hamburger menu icon
+            &:before {
+                position: absolute;
+                content: '';
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: #fa473e;
+                transform: translateY(-50%) scaleY(5);
+                transition: $transition-duration;
+            }
+        }
+    }
+    .navbar-nav {
+        float: right;
+        &.btns li {
+            padding: 19px 0.5vw;
+            font-size: 1vw;
+            font-weight: 700;
+            @media only screen and (min-width: 1920px) {
+                font-size: 20px;
+            }
+        }
+        a:hover {
+            background-color: transparent;
+        }
+        a.login-btn {
+            color: #ffffff;
+            background: #2d2752;
+            border: 1px solid #2d2752;
+            padding: 10px 42px;
+            border-radius: 25px; //font-size: 1vw;
+            &:hover {
+                color: #110a20;
+                background-color: #faf5f7;
+                border-color: #110a20;
+            }
+        }
+        a.signup-btn {
+            color: #ffffff;
+            background: #fa473e;
+            border: 1px solid #fa473e;
+            padding: 10px 42px;
+            border-radius: 25px; //font-size: 1vw;
+            &:hover {
+                color: #fa473e;
+                background-color: #faf5f7;
+                border-color: #ee6658;
+            }
+        }
     }
 }
 
+.not-pointer {
+    cursor: default !important;
+}
+.is-pointer {
+  cursor: pointer !important;
+}
+
 // Start New Hamburger Style
-
-.container-left-nav {
-
-    $items: 4;
-    $transition-duration: 0.5s;
-    $transition-delay: 0.05s;
-
-    width: 100%;
-    height: 80px;
-    float: left;
-
-    /* Toggle functionality */
-
-    // To hide the checkbox
-    #toggle {
-      position: absolute;
-      display: none;
-    }
-
-    #toggle:focus {
-
-      & ~ .toggle-container .button-toggle {
-        box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
-      }
-    }
-
-    // Styles for the 'open' state, if the checkbox is checked
-    #toggle:checked {
-      // Any element you need to change the style if menu is open goes here, using the sibling selector (~) as follows
-
-      // Making the "X" icon using `:before` and `:after` pseudo-elements
-      & ~ .toggle-container .button-toggle {
-        box-shadow: 0 0 0 550px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1), 0 0 0 8px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1);
-
-        &:hover {
-          box-shadow: 0 0 0 550px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1), 0 0 0 8px rgba(22, 22, 40, 1), inset 0 0 0 30px rgba(22, 22, 40, 1);
-        }
-
-        &:before {
-          transform: translateY(-50%) rotate(45deg) scale(1);
-        }
-
-        &:after {
-          transform: translateY(-50%) rotate(-45deg) scale(1);
-        }
-      }
-
-      &:focus ~ .toggle-container .button-toggle {
-        //box-shadow: 0 0 0 550px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1), 0 0 0 8px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1);
-      }
-
-      // Open nav
-      & ~ .nav {
-        pointer-events: auto;
-        transform: translate(50px, 50px);
-
-        width: 200px;
-        height: auto;
-        max-width: 250px;
-        margin-left: -38px;
-        margin-top: 50px;
-
-        @media (max-width: 1024px) {
-          max-width: 180px;
-        }
-
-        // Restoring nav items from "lines" in the menu icon
-        .nav-item {
-          color: #fffff9;
-          font-size: 15px;
-          font-weight: 900;
-          letter-spacing: 0;
-          height: 60px;
-          line-height: 60px;
-          margin-top: 15px;
-          opacity: 1;
-          transform: scaleY(1);
-          transition: $transition-duration, opacity 0.1s;
-
-          border-bottom: 1px solid #e8ffff;
-          display: inline-block;
-          width: 100%;
-
-          &.account {
-            border-bottom: none;
-            height: 0;
-            margin-top: 45px;
-          }
-
-          &:last-child {
-            border-bottom: none;
-            margin-top: 0;
-          }
-
-          &:hover {
-            color: #fa473e;
-            text-decoration: none;
-            border-bottom: 1px solid #fa473e;
-
-            &:last-child, &.account {
-              border-bottom: none;
-            }
-          }
-
-          // Setting delays for the nav items in open transition
-          @for $i from 1 through $items {
-            &:nth-child(#{$i}) {
-              $delay: ($items - $i) * $transition-delay;
-              transition-delay: $delay;
-              &:before {
-                transition-delay: $delay;
-              }
-            }
-          }
-
-          // Hiding the lines
-          &:before {
-            opacity: 0;
-          }
-        }
-
-        .button-toggle {
-          margin: 12px 1.5vw 22px 8px !important;
-        }
-      }
-    }
-
-    /* Toggle button */
-
-    .button-toggle {
-      position: absolute;
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      margin: 17px 2.5vw 0 5px;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      border-radius: 100%;
-      transition: $transition-duration + 0.1;
-
-      // Shadow on hover
-      &:hover {
-        box-shadow: 0 0 0 8px rgba(22, 22, 40, 0.1), inset 0 0 0 30px rgba(22, 22, 40, 0.1);
-
-        border-radius: 100%;
-        margin: 17px 2.5vw 0 5px;
-      }
-
-      // Making the "X" icon using `:before` and `:after` pseudo-elements
-      // Initially hidden because `scale(0)` transformation
-
-      &:before, &:after {
-        position: absolute;
-        content: '';
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #fa473e;
-        border-radius: 5px;
-        transition: $transition-duration;
-      }
-
-      &:before {
-        transform: translateY(-50%) rotate(45deg) scale(0);
-      }
-
-      &:after {
-        transform: translateY(-50%) rotate(-45deg) scale(0);
-      }
-    }
-
-    /* Menu */
-
-    .nav {
-      display: block;
-      //margin: 25px 25px 20px;
-      margin: 12px 1.5vw 22px 8px;
-      // Don't want pointer-events as menu is closed
-      pointer-events: none;
-      transition: $transition-duration;
-    }
-
-    // Showing nav items as lines, making up the hamburger menu icon
-    .nav-item {
-      position: relative;
-      display: inline-block;
-      float: left;
-      clear: both;
-      color: transparent;
-      font-size: 14px;
-      letter-spacing: -6.2px;
-      height: 7px;
-      line-height: 7px;
-      text-transform: uppercase;
-      white-space: nowrap;
-      transform: scaleY(0.2);
-      transition: $transition-duration, opacity 1s;
-
-      // Setting delays for the nav items in close transition
-      @for $i from 1 through $items {
-        &:nth-child(#{$i}) {
-          $delay: ($i - 1) * $transition-delay;
-          transition-delay: $delay;
-          &:before {
-            transition-delay: $delay;
-
-            background-color: #1a1a32;
-          }
-        }
-      }
-
-      // Adjusting width for the first line
-      &:nth-child(1) {
-        display: block;
-        width: 22px;
-        //height: 15px;
-      }
-
-      // Adjusting width for the second line
-      &:nth-child(2) {
-        display: block;
-        width: 16px;
-        //height: 15px;
-        margin-top: 0;
-      }
-
-      // Adjusting width for the third line
-      &:nth-child(3) {
-        display: block;
-        width: 22px;
-        //height: 15px;
-        margin-top: 0;
-      }
-
-      // Adjusting from the fourth element onwards
-      &:nth-child(n + 4) {
-        letter-spacing: -8px;
-        margin-top: -7px;
-        opacity: 0;
-      }
-
-      // Getting the lines for the hamburger menu icon
-      &:before {
-        position: absolute;
-        content: '';
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #fa473e;
-        transform: translateY(-50%) scaleY(5);
-        transition: $transition-duration;
-      }
-    }
-
-  }
-
-  // End New Hamburger Style
+// End New Hamburger Style

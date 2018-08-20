@@ -26,5 +26,14 @@ module.exports = {
                         });
                     })
             })
+    },
+
+    getStudentInfo: (req, res) => {
+        USER.findById(req.params.id)
+            .then((currentUser) => {
+                return res.status(200).json({
+                    user: currentUser
+                })
+            })
     }
 }

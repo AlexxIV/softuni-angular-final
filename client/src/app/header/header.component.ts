@@ -6,6 +6,14 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent { 
-  constructor(private authService : AuthService) {  }
- }
+export class HeaderComponent {
+  menuCheckbox: boolean = false;
+
+  constructor(private authService: AuthService) { }
+
+  expand() {
+    this.menuCheckbox = !this.menuCheckbox
+  }
+
+
+}

@@ -1,33 +1,51 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-light">
-  <div class="container-left-nav hidden-xs hidden-sm">
-    <!-- This checkbox will give us the toggle behavior, it will be hidden, but functional -->
-    <input id="toggle" type="checkbox">
+  <div class="col-md-2">
+    <div class="container-left-nav hidden-xs hidden-sm">
+      <!-- This checkbox will give us the toggle behavior, it will be hidden, but functional -->
+      <input id="toggle" type="checkbox" [(ngModel)]="menuCheckbox">
 
-    <!-- IMPORTANT: Any element that we want to modify when the checkbox state changes go here, being "sibling" of the checkbox element -->
+      <!-- IMPORTANT: Any element that we want to modify when the checkbox state changes go here, being "sibling" of the checkbox element -->
 
-    <!-- This label is tied to the checkbox, and it will contain the toggle "buttons" -->
-    <label class="toggle-container" for="toggle">
-      <!-- If menu is open, it will be the "X" icon, otherwise just a clickable area behind the hamburger menu icon -->
-      <span class="button button-toggle"></span>
-    </label>
+      <!-- This label is tied to the checkbox, and it will contain the toggle "buttons" -->
+      <label class="toggle-container" for="toggle">
+        <!-- If menu is open, it will be the "X" icon, otherwise just a clickable area behind the hamburger menu icon -->
+        <span class="button button-toggle"></span>
+      </label>
 
-    <!-- nav menu -->
-    <nav class="nav">
-      <span *ngIf="authService._isAuthenticated()" class="nav-item">Hi {{authService._userNameHelper()}}!</span>
-      <a class="nav-item" *ngIf="authService._isAuthenticated()" (click)="authService.logout()">Logout</a>
-      <a class="nav-item" *ngIf="!authService._isAuthenticated()" routerLink="/user/login">Login</a>
-      <a class="nav-item" *ngIf="!authService._isAuthenticated()" routerLink="/user/register">Register</a>
-      <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" routerLink="/student/courses/all/{{authService._userIdHelper()}}">My
-        courses
-      </a>
-      <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" routerLink="/student/courses/all/{{authService._userIdHelper()}}">Weekly
-        Schedule
-      </a>
+      <!-- nav menu -->
+      <nav class="nav clearfix">
+        <span *ngIf="authService._isAuthenticated()" class="nav-item not-pointer">Hi {{authService._userNameHelper()}}!</span>
+        <a class="nav-item" *ngIf="authService._isAuthenticated()" (click)="authService.logout(); expand()">Logout</a>
+        <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" (click)="expand()" routerLink="/student">Home</a>
+        <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" (click)="expand()" routerLink="/teacher">Home</a>
+        <a class="nav-item" *ngIf="!authService._isAuthenticated()" (click)="expand()" routerLink="/user/login">Login</a>
+        <a class="nav-item" *ngIf="!authService._isAuthenticated()" (click)="expand()" routerLink="/user/register">Register</a>
+        <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" (click)="expand()"
+          routerLink="/student/courses/all/{{authService._userIdHelper()}}">My courses
+        </a>
+        <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" (click)="expand()"
+          routerLink="/student/courses/schedule/{{authService._userIdHelper()}}">Weekly Schedule
+        </a>
 
-      <!-- <a routerLink="/student/courses/all/{{studentId}}">My courses</a>
+        <!-- <a routerLink="/student/courses/all/{{studentId}}">My courses</a>
       <br/>
       <a routerLink="/student/courses/schedule/{{studentId}}">Weekly Schedule</a> -->
-    </nav>
-    <img class="navbar-brand logo" src="../../assets/logo.png"/> 
+      </nav>
+
+    </div>
+  </div>
+  <div class="col-md-8">
+    <ul class="nav navbar-nav btns">
+      <li><a *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" routerLink="/student" class="login-btn">Hi {{authService._userNameHelper()}}!</a></li>
+      <li><a *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" routerLink="/teacher" class="login-btn not-pointer">Hi {{authService._userNameHelper()}}!</a></li>
+      <li><a class="signup-btn is-pointer" *ngIf="authService._isAuthenticated()" (click)="authService.logout()">Logout</a></li>
+      <li><a class="login-btn" *ngIf="!authService._isAuthenticated()" routerLink="/user/login">Login</a></li>
+      <li><a class="signup-btn" *ngIf="!authService._isAuthenticated()" routerLink="/user/register">Register</a></li>
+    </ul>
+  </div>
+  <div class="col-md-2">
+    <div class="logo float-right">
+      <img class="img-fluid" src="../../assets/logo.png" />
+    </div>
   </div>
 </nav>

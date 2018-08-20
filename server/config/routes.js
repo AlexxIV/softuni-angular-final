@@ -13,6 +13,7 @@ module.exports = (APP) => {
 
     APP.get('/student/courses/all/:id', STUDENT_CONTROLLER.getAllGrades);
     APP.get('/student/courses/schedule/:id', STUDENT_CONTROLLER.getSchedule);
+    APP.get('/student/:id', STUDENT_CONTROLLER.getStudentInfo);
     // APP.get('/stage/all', STAGE_CONTROLLER.getAll);
     // APP.get('/stage/details/:id', STAGE_CONTROLLER.getSingle);
     // APP.post('/stage/add', AUTH.isInRole('Admin'), STAGE_CONTROLLER.add);

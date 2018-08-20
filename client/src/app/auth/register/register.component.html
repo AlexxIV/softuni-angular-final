@@ -1,6 +1,5 @@
-{{userModel | json}}
 <div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+  <div class="col-md-4 mx-auto">
     <form #registrationForm="ngForm" (ngSubmit)="register()">
       <div class="form-group">
         <label for="email">Email</label>
@@ -92,7 +91,7 @@
             >
             <label for="isTeacher" class="tgl-btn" data-tg-off="Student" data-tg-on="Teacher"></label>
         </div>
-      <button class="btn btn-primary" [disabled]="registrationForm.invalid"  type="submit">Register</button>
+      <button class="btn btn-primary signup-btn" [disabled]="registrationForm.invalid"  type="submit">Register</button>
     </form>
   </div>
 </div>

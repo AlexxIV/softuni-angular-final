@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { Student } from '../models/student';
+import { StudentService } from '../student.service';
 
 @Component({
   selector: 'app-student-home',
@@ -7,15 +9,17 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./student-home.component.scss']
 })
 export class StudentHomeComponent implements OnInit {
-  public studentId;
-
-
+  student: Student;
   constructor(
-    private authService: AuthService
+    private studentService: StudentService
   ) { }
 
   ngOnInit() {
-    this.studentId = this.authService._userIdHelper();
+    this.studentService
+      .getPersonalInfo()
+      .subscribe((response) => {
+        this.student = response['user'];
+      })
   }
 
 }

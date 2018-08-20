@@ -43,6 +43,10 @@ export class AuthService {
         return JSON.parse(localStorage.getItem('currentUser')).firstname;
     }
 
+    _userLastNameHelper() : string {
+        return JSON.parse(localStorage.getItem('currentUser')).lastname;
+    }
+
     _userRoleHelper() : string {
         return JSON.parse(localStorage.getItem('currentUser')).userRole;
     }

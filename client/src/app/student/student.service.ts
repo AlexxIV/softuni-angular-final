@@ -28,4 +28,9 @@ export class StudentService {
         this.studentId = this.authService._userIdHelper();
         return this.http.get(`${this.baseUrl}${this.weeklyScheduleUrl}${this.studentId}`)
     }
+
+    getPersonalInfo() {
+        this.studentId = this.authService._userIdHelper();
+        return this.http.get(`${this.baseUrl}${this.studentId}`);
+    }
 }

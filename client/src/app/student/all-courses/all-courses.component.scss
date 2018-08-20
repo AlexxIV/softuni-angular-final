@@ -1,0 +1,38 @@
+.thead-custom {
+    background: #2d2752;
+    color: #ffffff;
+}
+
+
+.login-btn,
+.signup-btn {
+    padding: 19px 0.5vw;
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+.signup-btn {
+    color: #ffffff;
+    background: #fa473e;
+    border: 1px solid #fa473e;
+    padding: 10px 42px;
+    border-radius: 25px; //font-size: 1vw;
+    &:hover {
+        color: #fa473e;
+        background-color: #faf5f7;
+        border-color: #ee6658;
+    }
+}
+
+.login-btn {
+    color: #ffffff;
+    background: #2d2752;
+    border: 1px solid #2d2752;
+    padding: 10px 42px;
+    border-radius: 25px; //font-size: 1vw;
+    &:hover {
+        color: #110a20;
+        background-color: #faf5f7;
+        border-color: #110a20;
+    }
+}
