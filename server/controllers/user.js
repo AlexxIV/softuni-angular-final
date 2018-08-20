@@ -58,5 +58,30 @@ module.exports = {
                 userId: userId
             });
         })(req, res);
+    },
+
+    changePassword: (req, res) => {
+        let validationResult = FORM_VALIDATOR.validatePasswordChangeForm(req.body);
+
+        if (!validationResult.success) {
+            return res.status(409).json({
+                success: false,
+                message: validationResult.error
+            });
+        }
+
+        PASSPORT.authenticate('password-change', (err) => {
+            if (err) {
+                return res.status(409).json({
+                    success: false,
+                    message: err
+                });
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: 'Password changed successful!'
+            });
+        })(req, res);
     }
 };

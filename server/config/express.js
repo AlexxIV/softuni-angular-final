@@ -4,6 +4,7 @@ const PASSPORT = require('passport');
 
 const REGISTER_STRATEGY = require('./passport').localRegister();
 const LOGIN_STRATEGY = require('./passport').localLogin();
+const PASSWORD_CHANGE_STRATEGY = require('./passport').passwordChange();
 
 module.exports = (APP) => {
     APP.use(BODY_PARSER.urlencoded({ extended: true }));
@@ -12,4 +13,5 @@ module.exports = (APP) => {
     APP.use(PASSPORT.initialize());
     PASSPORT.use('local-register', REGISTER_STRATEGY);
     PASSPORT.use('local-login', LOGIN_STRATEGY);
+    PASSPORT.use('password-change', PASSWORD_CHANGE_STRATEGY);
 };

@@ -10,10 +10,12 @@ const AUTH = require('../middleware/auth');
 module.exports = (APP) => {
     APP.post('/user/register', USER_CONTROLLER.register);
     APP.post('/user/login', USER_CONTROLLER.login);
+    APP.post('/user/changepass', USER_CONTROLLER.changePassword);
 
     APP.get('/student/courses/all/:id', STUDENT_CONTROLLER.getAllGrades);
     APP.get('/student/courses/schedule/:id', STUDENT_CONTROLLER.getSchedule);
     APP.get('/student/:id', STUDENT_CONTROLLER.getStudentInfo);
+    
     // APP.get('/stage/all', STAGE_CONTROLLER.getAll);
     // APP.get('/stage/details/:id', STAGE_CONTROLLER.getSingle);
     // APP.post('/stage/add', AUTH.isInRole('Admin'), STAGE_CONTROLLER.add);

@@ -2,7 +2,7 @@
   <div class="col-md mb-5 mr-2 ml-2">
     <div class="row">
       <div class="col-12 schedule-head">
-        <h3 class="text-center">Monday</h3>
+        <h3 class="text-center" [ngClass]="{highlighted: day === 'Monday'}">Monday</h3>
       </div>
       <div class="col-12 schedule-body" *ngFor="let subject of schedule.Monday; index as i">
         <span><strong>{{i + 1}}.</strong> {{subject}}</span>
@@ -12,7 +12,7 @@
   <div class="col-md mb-5 mr-2  ml-2">
     <div class="row">
       <div class="col-12 schedule-head">
-        <h3 class="text-center">Tuesday</h3>
+        <h3 class="text-center" [ngClass]="{highlighted: day === 'Tuesday'}">Tuesday</h3>
       </div>
       <div class="col-12 schedule-body" *ngFor="let subject of schedule.Tuesday; index as i">
         <span><strong>{{i + 1}}.</strong> {{subject}}</span>
@@ -22,7 +22,7 @@
   <div class="col-md mb-5 mr-2  ml-2">
     <div class="row">
       <div class="col-12 schedule-head">
-        <h3 class="text-center">Wednesday</h3>
+        <h3 class="text-center" [ngClass]="{highlighted: day === 'Wednesday'}" >Wednesday</h3>
       </div>
       <div class="col-12 schedule-body" *ngFor="let subject of schedule.Wednesday; index as i">
         <span><strong>{{i + 1}}.</strong> {{subject}}</span>
@@ -32,7 +32,7 @@
   <div class="col-md mb-5 mr-2  ml-2">
     <div class="row">
       <div class="col-12 schedule-head">
-        <h3 class="text-center">Thursday</h3>
+        <h3 class="text-center" [ngClass]="{highlighted: day === 'Thursday'}">Thursday</h3>
       </div>
       <div class="col-12 schedule-body" *ngFor="let subject of schedule.Thursday; index as i">
         <span><strong>{{i + 1}}.</strong> {{subject}}</span>
@@ -42,7 +42,7 @@
   <div class="col-md mb-5 mr-2  ml-2">
     <div class="row">
       <div class="col-12 schedule-head">
-        <h3 class="text-center">Friday</h3>
+        <h3 class="text-center" [ngClass]="{highlighted: day === 'Friday'}">Friday</h3>
       </div>
       <div class="col-12 schedule-body" *ngFor="let subject of schedule.Friday; index as i">
         <span><strong>{{i + 1}}.</strong> {{subject}}</span>

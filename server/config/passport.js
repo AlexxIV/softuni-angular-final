@@ -56,11 +56,11 @@ module.exports = {
         }, (email, password, done) => {
             USER.findOne({ email: email }).then((user) => {
                 if (!user) {
-                    return done(null, false);
+                    return done('Invalid Credentials', false);
                 }
 
                 if (!user.authenticate(password)) {
-                    return done(null, false);
+                    return done('Invalid Credentials', false);
                 }
                 ROLE.findById(user.roles[0]).then((role) => {
                     userEmail = user.email;
@@ -74,5 +74,36 @@ module.exports = {
             });
         }
         );
+    },
+
+    passwordChange: () => {
+        return new LOCAL_STRATEGY({
+            usernameField: 'email',
+            passwordField: 'oldPassword',
+            session: false,
+            passReqToCallback: true
+        }, (req, email, oldPassword, done) => {
+            USER.findOne({ email: email }).then((userToUpdate) => {
+                if (!userToUpdate) {
+                    return done('The user does not exist', false);
+                }
+
+                if (!userToUpdate.authenticate(oldPassword)) {
+                    return done('Wrong Credentials', false);
+                }
+
+                let oldHashedPassword = ENCRYPTION.generateHashedPassword(userToUpdate.salt, oldPassword);
+
+                if (userToUpdate.password === oldHashedPassword) {
+                    let newHashedPassword = ENCRYPTION.generateHashedPassword(userToUpdate.salt, req.body.newPassword);
+                    if (oldHashedPassword === newHashedPassword) {
+                        return done("New password must be diffferent from old password", false);
+                    }
+                    userToUpdate.password = newHashedPassword;
+                    userToUpdate.save();
+                    return done(null);
+                }
+            })
+        })
     }
 };

@@ -32,5 +32,5 @@ export class StudentService {
     getPersonalInfo() {
         this.studentId = this.authService._userIdHelper();
         return this.http.get(`${this.baseUrl}${this.studentId}`);
-    }
+    }    
 }

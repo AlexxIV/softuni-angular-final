@@ -9,17 +9,34 @@ import { StudentService } from '../student.service';
   styleUrls: ['./student-home.component.scss']
 })
 export class StudentHomeComponent implements OnInit {
-  student: Student;
+  studentModel: Student;
   constructor(
-    private studentService: StudentService
-  ) { }
+    private studentService: StudentService,
+    private authService: AuthService
+  ) {
+    this.studentModel = new Student("", "", "", "", "", "")
+   }
 
   ngOnInit() {
     this.studentService
       .getPersonalInfo()
       .subscribe((response) => {
-        this.student = response['user'];
+        this.studentModel.firstname = response['user']['firstname'];
+        this.studentModel.lastname = response['user']['lastname'];
+        this.studentModel.email = response['user']['email'];
       })
+  }
+
+  changePassword() {
+    this.authService.changePassword(
+      this.studentModel)
+      .subscribe(
+        err => {
+         this.studentModel['oldPassword'] = '';
+         this.studentModel['newPassword'] = '';
+         this.studentModel['confirmedPassword'] = '';
+        }
+      )
   }
 
 }

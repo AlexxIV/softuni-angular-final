@@ -8,11 +8,12 @@ import { StudentService } from '../student.service';
 })
 export class WeeklyScheduleComponent implements OnInit {
   schedule;
+  day: string;
   constructor(
     private studentService: StudentService
   ) { }
 
-  
+
 
   ngOnInit() {
     this.studentService
@@ -20,5 +21,23 @@ export class WeeklyScheduleComponent implements OnInit {
       .subscribe((response) => {
         this.schedule = response['weeklySchedule'];
       })
+    let data = new Date();
+    switch (data.getDay()) {
+      case 1:
+        this.day = 'Monday';
+        break;
+      case 2:
+        this.day = 'Tuesday';
+        break;
+      case 3:
+        this.day = 'Wednesday';
+        break;
+      case 4:
+        this.day = 'Thursday';
+        break;
+      case 5:
+        this.day = 'Friday';
+        break;
+    }
   }
 }
