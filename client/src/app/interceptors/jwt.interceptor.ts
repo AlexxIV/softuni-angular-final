@@ -36,7 +36,14 @@ export class JwtInterceptor implements HttpInterceptor {
                 if (res instanceof HttpResponse && res.body.token) {
                     this.SaveToken(res.body);
                     this.toastr.success(res.body.message, 'Success!');
-                    this.router.navigate(['/home']); // TODO
+                    if (res.body.isAdmin) {
+                        this.router.navigate(['/admin']); //TODO
+                    } else if (res.body.isTeacher) {
+                        this.router.navigate(['/teacher']);
+                    } else {
+                        this.router.navigate(['/student']);
+                    }
+                    
                 }
 
                 if (res instanceof HttpResponse && res.body.success && res.url.endsWith('register')) {
@@ -52,7 +59,8 @@ export class JwtInterceptor implements HttpInterceptor {
             'lastname': data.lastname,
             'userEmail': data.userEmail,
             'userRole': data.userRole,
-            'token': data.token
+            'token': data.token,
+            'id': data.userId
         }));
     }
 }

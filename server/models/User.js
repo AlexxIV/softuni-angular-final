@@ -14,6 +14,8 @@ const USER_SCHEMA = MONGOOSE.Schema({
     isAdmin: { type: BOOLEAN, default: false },
     isTeacher: { type: BOOLEAN, default: false },
     roles: [{ type: OBJECT_ID, ref: 'Role' }],
+    classbook: { type: OBJECT_ID, ref: 'ClassBook' },
+    schedule: { type: OBJECT_ID, ref: 'Schedule' },
     createdDate: { type: Date, default: Date.now }
 });
 

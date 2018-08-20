@@ -1,4 +1,5 @@
 const USER_CONTROLLER = require('../controllers/user');
+const STUDENT_CONTROLLER = require('../controllers/student');
 // const STAGE_CONTROLLER = require('../controllers/stage');
 // const TEAM_CONTROLLER = require('../controllers/team');
 // const RIDER_CONTROLLER = require('../controllers/rider');
@@ -10,6 +11,8 @@ module.exports = (APP) => {
     APP.post('/user/register', USER_CONTROLLER.register);
     APP.post('/user/login', USER_CONTROLLER.login);
 
+    APP.get('/student/courses/all/:id', STUDENT_CONTROLLER.getAllGrades);
+    APP.get('/student/courses/schedule/:id', STUDENT_CONTROLLER.getSchedule);
     // APP.get('/stage/all', STAGE_CONTROLLER.getAll);
     // APP.get('/stage/details/:id', STAGE_CONTROLLER.getSingle);
     // APP.post('/stage/add', AUTH.isInRole('Admin'), STAGE_CONTROLLER.add);

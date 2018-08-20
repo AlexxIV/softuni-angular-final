@@ -54,7 +54,8 @@ module.exports = {
                 firstname: firstname,
                 lastname: lastname,
                 userRole: userRole,
-                userEmail: userEmail
+                userEmail: userEmail,
+                userId: userId
             });
         })(req, res);
     }

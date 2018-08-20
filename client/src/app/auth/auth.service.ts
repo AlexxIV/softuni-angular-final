@@ -10,7 +10,6 @@ import { UserLogin } from './models/user-login';
 })
 
 export class AuthService {
-    currentUser: UserRegister
     baseUrl: string = 'http://localhost:8000/user/';
     registerUrl: string = 'register';
     loginUrl: string = 'login';
@@ -32,7 +31,7 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.clear();
+        localStorage.removeItem('currentUser');
         this.router.navigate(['/']);
     }
 
@@ -46,6 +45,10 @@ export class AuthService {
 
     _userRoleHelper() : string {
         return JSON.parse(localStorage.getItem('currentUser')).userRole;
+    }
+
+    _userIdHelper() : string {
+        return JSON.parse(localStorage.getItem('currentUser')).id;
     }
 
 }

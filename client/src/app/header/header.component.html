@@ -1,31 +1,33 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/">App</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-md navbar-dark bg-light">
+  <div class="container-left-nav hidden-xs hidden-sm">
+    <!-- This checkbox will give us the toggle behavior, it will be hidden, but functional -->
+    <input id="toggle" type="checkbox">
 
-  <div class="collapse navbar-collapse" id="navbarsExample04">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/">Home</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto" *ngIf="!authService._isAuthenticated()">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/user/login">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/user/register">Register</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto" *ngIf="authService._isAuthenticated()">
-      <li class="nav-item">
-        <span class="nav-link">Hi {{authService._userNameHelper()}}!</span>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href (click)="authService.logout()">Logout</a>
-      </li>
-    </ul>
+    <!-- IMPORTANT: Any element that we want to modify when the checkbox state changes go here, being "sibling" of the checkbox element -->
+
+    <!-- This label is tied to the checkbox, and it will contain the toggle "buttons" -->
+    <label class="toggle-container" for="toggle">
+      <!-- If menu is open, it will be the "X" icon, otherwise just a clickable area behind the hamburger menu icon -->
+      <span class="button button-toggle"></span>
+    </label>
+
+    <!-- nav menu -->
+    <nav class="nav">
+      <span *ngIf="authService._isAuthenticated()" class="nav-item">Hi {{authService._userNameHelper()}}!</span>
+      <a class="nav-item" *ngIf="authService._isAuthenticated()" (click)="authService.logout()">Logout</a>
+      <a class="nav-item" *ngIf="!authService._isAuthenticated()" routerLink="/user/login">Login</a>
+      <a class="nav-item" *ngIf="!authService._isAuthenticated()" routerLink="/user/register">Register</a>
+      <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" routerLink="/student/courses/all/{{authService._userIdHelper()}}">My
+        courses
+      </a>
+      <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" routerLink="/student/courses/all/{{authService._userIdHelper()}}">Weekly
+        Schedule
+      </a>
+
+      <!-- <a routerLink="/student/courses/all/{{studentId}}">My courses</a>
+      <br/>
+      <a routerLink="/student/courses/schedule/{{studentId}}">Weekly Schedule</a> -->
+    </nav>
+    <img class="navbar-brand logo" src="../../assets/logo.png"/> 
   </div>
 </nav>

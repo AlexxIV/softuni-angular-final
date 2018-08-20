@@ -17,5 +17,8 @@ module.exports = (config) => {
 
     // Seed Imports
     require('../models/User');
+    require('../models/ClassBook');
+    require('../models/Course');
+    require('../models/Schedule');
     require('../models/Role').init();
 };

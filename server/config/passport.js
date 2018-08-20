@@ -68,7 +68,8 @@ module.exports = {
                     lastname = user.lastname;
                     token = JWT_HELPER.generateToken(user);
                     userRole = role.name;
-                    return done(null, token, firstname, lastname, userRole, userEmail);
+                    userId = user._id;
+                    return done(null, token, firstname, lastname, userRole, userEmail, userId);
                 })
             });
         }
