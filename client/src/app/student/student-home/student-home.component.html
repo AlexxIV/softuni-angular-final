@@ -1,31 +1,42 @@
 <div class="row mt-5">
-    <div class="col-md-5 mx-auto mb-5" *ngIf="studentModel.firstname !== ''">
+    <div class="col-xl-4 col-md-7 mx-auto">
         <h3 class="text-center">Personal Info</h3>
         <form #changePasswordForm="ngForm" (ngSubmit)="changePassword()">
-            <div class="form-group">
-                    <label for="firstName">First Name:</label>
+            <div class="form-group" *ngIf="studentModel.firstname !== ''">
+                    <label for="firstName">First Name</label>
                     <input 
                     type="text" 
                     id="firstName"
-                    name="firstName"
+                    name="firstname"
                     class="form-control"
                     value = {{studentModel.firstname}}
                     disabled
                     >
             </div>
-            <div class="form-group">
-                    <label for="lastName">Last Name:</label>
+            <div class="form-group" *ngIf="studentModel.lastname !== ''">
+                    <label for="lastName">Last Name</label>
                     <input 
                     type="text" 
                     id="lastName"
-                    name="lastName"
+                    name="lastname"
                     class="form-control"
                     value = {{studentModel.lastname}}
                     disabled
                     >
             </div>
-            <div class="form-group">
-                    <label for="email">Email:</label>
+            <div class="form-group" *ngIf="studentModel.personal_id !== ''">
+                <label for="personalId">Personal Id</label>
+                <input 
+                type="text" 
+                id="personalId"
+                name="personal_id"
+                class="form-control"
+                value = {{studentModel.personal_id}}
+                disabled
+                >
+            </div>
+            <div class="form-group" *ngIf="studentModel.email !== ''">
+                    <label for="email">Email</label>
                     <input 
                     type="email" 
                     id="email"
@@ -96,13 +107,68 @@
                                     Both passwords should match
                                 </div>
                 </div>
+                <div class="form-group">
                 <button class="btn btn-primary signup-btn" [disabled]="changePasswordForm.invalid"  type="submit">Change Password</button>
+                </div>
             </div>
             </form>
-        </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-5 mx-auto">
+    </div>
+    <div class="col-xl-4 col-md-7 mx-auto">
         <h3 class="text-center">School Info</h3>
+        <div class="form-group" *ngIf="studentModel.school_name !== ''">
+            <label for="schoolName">School Name</label>
+            <input 
+            type="text" 
+            id="schoolName"
+            name="schoolName"
+            class="form-control"
+            value = {{studentModel.school_name}}
+            disabled
+            >
+        </div>
+        <div class="form-group" *ngIf="studentModel.student_class !== 0">
+            <label for="schoolGrade">Grade</label>
+            <input 
+            type="text" 
+            id="grade"
+            name="grade"
+            class="form-control"
+            value = {{studentModel.student_class}}
+            disabled
+            >
+        </div>
+        <div class="form-group" *ngIf="studentModel.teacher !== null">
+            <label for="teacherFirstName">Teacher First Name</label>
+            <input 
+            type="text" 
+            id="teacherFirstName"
+            name="teacherFirstName"
+            class="form-control"
+            value = {{studentModel.teacher.firstname}}
+            disabled
+            >
+        </div>
+        <div class="form-group" *ngIf="studentModel.teacher !== null">
+            <label for="teacherLastName">Teacher Last Name</label>
+            <input 
+            type="text" 
+            id="teacherLastName"
+            name="teacherLastName"
+            class="form-control"
+            value = {{studentModel.teacher.lastname}}
+            disabled
+            >
+        </div>
+        <div class="form-group" *ngIf="studentModel.teacher !== null">
+            <label for="teacherEmail">Teacher Email</label>
+            <input 
+            type="email" 
+            id="teacherEmail"
+            name="teacherEmail"
+            class="form-control"
+            value = {{studentModel.teacher.email}}
+            disabled
+            >
+        </div>
     </div>
 </div>

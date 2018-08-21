@@ -4,7 +4,6 @@ const FORM_VALIDATOR = require('../_helpers/formValidator');
 
 module.exports = {
     register: (req, res) => {
-        console.log(req.body);
         let validationResult = FORM_VALIDATOR.validateRegisterForm(req.body);
 
         if (!validationResult.success) {

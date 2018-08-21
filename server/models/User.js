@@ -2,6 +2,7 @@ const MONGOOSE = require('mongoose');
 
 const ENCRYPTION = require('../_helpers/encryption');
 const STRING = MONGOOSE.Schema.Types.String;
+const NUMBER = MONGOOSE.Schema.Types.Number;
 const BOOLEAN = MONGOOSE.Schema.Types.Boolean;
 const OBJECT_ID = MONGOOSE.Schema.Types.ObjectId;
 
@@ -16,7 +17,12 @@ const USER_SCHEMA = MONGOOSE.Schema({
     roles: [{ type: OBJECT_ID, ref: 'Role' }],
     classbook: { type: OBJECT_ID, ref: 'ClassBook' },
     schedule: { type: OBJECT_ID, ref: 'Schedule' },
-    createdDate: { type: Date, default: Date.now }
+    teacher: { type: OBJECT_ID, ref: 'User'},
+    teacher_class: [{ type: OBJECT_ID, ref: 'User' }],
+    student_class: { type: NUMBER },
+    createdDate: { type: Date, default: Date.now },
+    personal_id: { type: STRING, required: true },
+    school_name: { type: STRING, required: true }
 });
 
 USER_SCHEMA.method({

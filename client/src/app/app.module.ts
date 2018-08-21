@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { StudentModule } from './student/student.module';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +25,7 @@ import { StudentModule } from './student/student.module';
     FormsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
-    AuthModule,
-    StudentModule
+    AuthModule
 
   ],
   providers: [

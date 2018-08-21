@@ -1,7 +1,21 @@
 .navbar {
     max-height: 80px;
+    @media (max-width: 768px) {
+        max-height: 550px;
+        .buttons-holder,
+        .logo-holder {
+            display: none;
+        }
+    }
+    align-items: unset;
+    #menu-animation {
+        overflow: hidden;
+    }
     .nav-link {
         cursor: pointer;
+    }
+    .navbar-header {
+        float: none;
     }
     .logo {
         max-width: 80px;
@@ -41,7 +55,7 @@
                 }
             }
             &:focus~.toggle-container .button-toggle {
-                //box-shadow: 0 0 0 550px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1), 0 0 0 8px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1);
+                // box-shadow: 0 0 0 550px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1), 0 0 0 8px rgba(22,22,40, 1), inset 0 0 0 30px rgba(22,22,40, 1);
             } // Open nav
             &~.nav {
                 pointer-events: auto;
@@ -145,14 +159,14 @@
         /* Menu */
         .nav {
             display: block; //margin: 25px 25px 20px;
-            margin: 12px 1.5vw 22px 8px; // Don't want pointer-events as menu is closed
+            margin: 9px 1.5vw 22px 9px; // Don't want pointer-events as menu is closed
             pointer-events: none;
             transition: $transition-duration;
         } // Showing nav items as lines, making up the hamburger menu icon
         .nav-item {
             position: relative;
             display: inline-block;
-            float: left;
+            // float: left;
             clear: both;
             color: transparent;
             font-size: 14px;
@@ -225,6 +239,7 @@
             padding: 10px 42px;
             border-radius: 25px; //font-size: 1vw;
             &:hover {
+                text-decoration: none;
                 color: #110a20;
                 background-color: #faf5f7;
                 border-color: #110a20;
@@ -237,6 +252,7 @@
             padding: 10px 42px;
             border-radius: 25px; //font-size: 1vw;
             &:hover {
+                text-decoration: none;
                 color: #fa473e;
                 background-color: #faf5f7;
                 border-color: #ee6658;
@@ -244,13 +260,3 @@
         }
     }
 }
-
-.not-pointer {
-    cursor: default !important;
-}
-.is-pointer {
-  cursor: pointer !important;
-}
-
-// Start New Hamburger Style
-// End New Hamburger Style

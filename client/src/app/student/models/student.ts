@@ -5,6 +5,10 @@ export class Student {
         public email: string,
         public oldPassword: string,
         public newPassword: string,
-        public confirmedPassword: string
+        public confirmedPassword: string,
+        public student_class: number,
+        public teacher: Object,
+        public personal_id: string,
+        public school_name: string
     ) { }
 }

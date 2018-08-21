@@ -17,8 +17,14 @@ module.exports = {
             let user = {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
-                email: req.body.email,
-                password: req.body.password
+                email: email,
+                password: req.body.password,
+                personal_id: req.body.personal_id,
+                school_name: req.body.school_name,
+                student_class: req.body.student_class,
+                teacher: null,
+                classbook: null,
+                schedule: null
             };
             let role = 'Student';
             if (req.body.isTeacher) {
@@ -41,7 +47,7 @@ module.exports = {
 
                     return done(null);
                 }).catch(() => {
-                    return done(null, false);
+                    return done('Registration Error', false);
                 });
             });
         }

@@ -1,22 +1,6 @@
+<form #registrationForm="ngForm" (ngSubmit)="register()">
 <div class="row">
-  <div class="col-md-4 mx-auto">
-    <form #registrationForm="ngForm" (ngSubmit)="register()">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input 
-        type="email" 
-        id="email"
-        name="email"
-        class="form-control"
-        [(ngModel)]="userModel.email"
-        required
-        #email="ngModel"
-        email
-        >
-        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-            <span>Please provide a valid email</span>
-          </div>
-      </div>
+  <div class="col-xl-4 col-sm-7 mx-auto">
       <div class="form-group">
         <label for="firstname">First Name</label>
         <input 
@@ -80,6 +64,7 @@
             Both passwords should match
           </div>
       </div>
+      
       <div class="form-group">
           <input
             type="checkbox"
@@ -91,8 +76,76 @@
             >
             <label for="isTeacher" class="tgl-btn" data-tg-off="Student" data-tg-on="Teacher"></label>
         </div>
-      <button class="btn btn-primary signup-btn" [disabled]="registrationForm.invalid"  type="submit">Register</button>
-    </form>
+  </div>
+  <div class="col-xl-4 col-sm-7 mx-auto">
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input 
+              type="email" 
+              id="email"
+              name="email"
+              class="form-control"
+              [(ngModel)]="userModel.email"
+              required
+              #email="ngModel"
+              email
+              >
+              <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                  <span>Please provide a valid email</span>
+                </div>
+            </div>
+      <div class="form-group">
+          <label for="personalId">Personal Id</label>
+          <input
+            type="text"
+            id="personalId"
+            pattern="^\d{10}$"
+            name="personal_id"
+            class="form-control"
+            [(ngModel)]="userModel.personal_id"
+            required
+            #personal_id="ngModel"
+            >
+            <div [hidden]="personal_id.valid || personal_id.pristine" class="alert alert-danger">
+              Please enter valid Id (Length: 10 symbols)
+            </div>
+      </div>
+      <div class="form-group">
+            <label for="student_class">Student Grade</label>
+            <input
+              type="number"
+              id="studentClass"
+              name="student_class"
+              class="form-control"
+              pattern="^([5-9]|[10-12]{2,})$"
+              [(ngModel)]="userModel.student_class"
+              required
+              #student_class="ngModel"
+              >
+              <div [hidden]="student_class.valid || student_class.pristine" class="alert alert-danger">
+                Please enter valid grade (5-12)
+              </div>
+      </div>
+      <div class="form-group">
+              <label for="schoolName">School Name</label>
+              <input
+                type="text"
+                id="schoolName"
+                name="school_name"
+                class="form-control"
+                pattern="^[A-Z]+[A-Z0-9a-z ]*$"
+                [(ngModel)]="userModel.school_name"
+                required
+                #school_name="ngModel"
+                >
+                <div [hidden]="school_name.valid || school_name.pristine" class="alert alert-danger">
+                  Please enter valid school name
+                </div>
+      </div>
+      <div class="form-group">
+          <button class="btn btn-primary signup-btn" [disabled]="registrationForm.invalid"  type="submit">Register</button>
+          </div>
   </div>
 </div>
+</form>
 
