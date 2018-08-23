@@ -1,13 +1,19 @@
-.thead-custom {
+.schedule-head {
     background: #2d2752;
     color: #ffffff;
+    border-right: 1px solid #2d2752;
 }
 
-.greenlight {
-    color: #02C66F;
+.schedule-body {
+    border: 1px solid #2d2752;
+    padding: 0;
 }
 
-.highlight {
+strong {
+    color: #2d2752;
+}
+
+.highlighted {
     color: #fa473e;
 }
 
@@ -76,37 +82,38 @@
     }
 }
 
-.small-btn {
+.save-button {
+    position: absolute;
+    right: 6px;
+    top: 0;
     padding: 4px 8px;
     font-size: 1vw;
     font-weight: 700;
     cursor: pointer;
 }
-
 .plus {
     margin-top: 5px;
-    padding: 0px 8px 4px 8px;
-    font-size: 23px;
+    font-size: 16px;
     cursor: pointer;
     background-color: #0ddf41;
+    padding: 0 8px;
     color: #fff;
     font-weight: bold;
     border-radius: 50%;
     border: 0.5px solid #0ddf41;
-    line-height: 30px;
     &:hover {
         background-color: #fff;
         color: #0ddf41;
     }
 }
-
 .delete-button {
     cursor: pointer;
-    font-size: 20px;
-    line-height: 35px;
-    padding: 0 2px 2px 2px;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    z-index: 2;
     background-color: #fa473e;
-    padding: 0 12px 6px 12px;
+    padding: 0 8px;
     color: #fff;
     font-weight: bold;
     border-radius: 50%;

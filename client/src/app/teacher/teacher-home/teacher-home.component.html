@@ -3,12 +3,52 @@
     <h1 class="text-center">Welcome {{teacher.firstname}} {{teacher.lastname}}</h1>
   </div>
   <div class="col-7 mx-auto" *ngIf="teacher.teacher_class[0]">
-    <h2 class="text-center" >Your class: {{teacher.teacher_class[0].student_class}}</h2>
+    <h2 class="text-center">Your class: {{teacher.teacher_class[0].student_class}}</h2>
+  </div>
+  <div class="col-7 mx-auto mt-3 mb-3" *ngIf="teacher.teacher_class">
+    <div class="btn-container text-center">
+      <a class="btn-success btn" routerLink="/teacher/schedule/{{teacher._id}}">
+        Your class schedule</a>
+    </div>
   </div>
 </div>
-<div class="row">
+<div class="row mt-5" *ngIf="newStudents">
+  <div class="col-8 mx-auto" *ngIf="newStudents.length > 0">
+  <h2>Unregistered students</h2>
+  <table class="table">
+    <thead class="thead-custom">
+      <tr>
+        <th scope="col">Student #</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Grade</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of newStudents; index as i">
+        <th scope="row">{{i + 1}}</th>
+        <td>
+          {{student.firstname}}
+        </td>
+        <td>
+          {{student.lastname}}
+        </td>
+        <td>
+          {{student.student_class}}
+        </td>
+        <td *ngIf="teacher">
+          <button class="btn btn-success btn-sm" *ngIf="student.student_class === teacher.teacher_class[0].student_class" (click)="register(student); newStudents.splice(i, 1) ;teacher.teacher_class.push(student)">Register</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<div class="row  mt-5">
   <div class="col-8 mx-auto">
-    <table class="table mt-5" *ngIf="teacher">
+    <h2>My students</h2>
+    <table class="table" *ngIf="teacher">
       <thead class="thead-custom">
         <tr>
           <th scope="col">Student #</th>
@@ -34,7 +74,7 @@
           <td>
             <a class="btn btn-success btn-sm mr-1" routerLink="/teacher/student/details/{{student._id}}">
               Edit</a>
-            <button class="btn btn-danger btn-sm ml-1" (click)="delete(student._id); teacher.teacher_class.splice($index, 1)">
+            <button class="btn btn-danger btn-sm ml-1" (click)="delete(student._id); teacher.teacher_class.splice(i, 1)">
               Delete</button>
           </td>
         </tr>

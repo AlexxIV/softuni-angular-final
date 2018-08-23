@@ -21,7 +21,9 @@
             routerLink="/student">Home</a>
           <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" (click)="expand()"
             routerLink="/teacher">My Class</a>
-            <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Admin'" (click)="expand()"
+          <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" (click)="expand()"
+            routerLink="/teacher/schedule/{{authService._userIdHelper()}}">My Class Schedule</a>
+          <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Admin'" (click)="expand()"
             routerLink="/admin">Home</a>
           <a class="nav-item" *ngIf="!authService._isAuthenticated()" (click)="expand()" routerLink="/user/login">Login</a>
           <a class="nav-item" *ngIf="!authService._isAuthenticated()" (click)="expand()" routerLink="/user/register">Register</a>
@@ -50,11 +52,12 @@
         <a *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" routerLink="/teacher" class="login-btn">Hi
           {{authService._userNameHelper()}}!
         </a>
-      </li> <li>
-          <a *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Admin'" routerLink="/admin" class="login-btn">Hi
-            {{authService._userNameHelper()}}!
-          </a>
-        </li>
+      </li>
+      <li>
+        <a *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Admin'" routerLink="/admin" class="login-btn">Hi
+          {{authService._userNameHelper()}}!
+        </a>
+      </li>
       <li><a class="signup-btn is-pointer" *ngIf="authService._isAuthenticated()" (click)="authService.logout()">Logout</a></li>
       <li><a class="login-btn" *ngIf="!authService._isAuthenticated()" routerLink="/user/login">Login</a></li>
       <li><a class="signup-btn" *ngIf="!authService._isAuthenticated()" routerLink="/user/register">Register</a></li>

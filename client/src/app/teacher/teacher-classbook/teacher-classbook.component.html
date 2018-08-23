@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-8 mx-auto">
-      <h2 class="text-center mt-5" *ngIf="studentClassbook">
-        {{studentClassbook.owner.firstname}} {{studentClassbook.owner.lastname}} Classbook
-      </h2>
+        <h2 class="text-center mt-5" *ngIf="studentClassbook">
+            {{studentClassbook.owner.firstname}} {{studentClassbook.owner.lastname}} Classbook
+        </h2>
         <table class="table mt-5" *ngIf="studentClassbook">
             <thead class="thead-custom">
                 <tr>
@@ -18,41 +18,58 @@
                     <th scope="row">{{i + 1}}</th>
                     <td>{{course.name}}</td>
                     <td>
-                        <span *ngFor="let grade of course.grades" [ngClass]="{'highlight': grade===2, 'greenlight': grade===6}">{{grade}}
-                            </span>
+                        <span *ngFor="let grade of course.grades" [ngClass]="{'highlight': grade === 2, 'greenlight': grade === 6}">{{grade}}
+                        </span>
                     </td>
                     <td>
-                            <input
-                              type="checkbox"
-                              id="{{course.name}}"
-                              name="{{course.name}}"
-                              class="tgl tgl-flat"
-                              [(ngModel)]="course.checked"
-                              >
-                              <label for="{{course.name}}" class="tgl-btn"></label>
+                        <input type="checkbox" id="{{course.name}}" name="{{course.name}}" class="tgl tgl-flat" [(ngModel)]="course.checked">
+                        <label for="{{course.name}}" class="tgl-btn"></label>
                     </td>
-                    <td *ngIf="course.checked">
-                            <form (ngSubmit)="addGrade(course.name, selectedValue)"> <!-- TODO-->
-                                <div class="form-group">
-                                  <select 
-                                  class="form-control" 
-                                  id="add_{{course.name}}" 
-                                  name="add_{{course.name}}"
-                                  [(ngModel)]="selectedValue">
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                  </select>
-                                  <br>
+                    <td>
+                        <div class="row">
+                            <div class="col-2">
+                        <span class="delete-button" (click)="delete(course); studentClassbook.courses.splice(i, 1)">-</span>
+                            </div>
+                            <div class="col-10"  *ngIf="course.checked">
+                        <form (ngSubmit)="addGrade(course.name, selectedValue)">
+                            <!-- TODO-->
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <select class="form-control" id="add_{{course.name}}" name="add_{{course.name}}" [(ngModel)]="selectedValue">
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                        </select>
+                                        <br>
+                                    </div>
                                 </div>
-                                <button class="btn btn-primary" type="submit">Add Grade</button>
-                              </form>
+                                <div class="col-6">
+                                    <button class="login-btn small-btn" type="submit">Add Grade</button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div class="row" *ngIf="newCourse">
+        <div class="col-3">
+        <input 
+        type="text"
+        class="form-control"
+        [(ngModel)]="courseName"
+        >
+        </div>
+        <div class="col-3">
+                <button class="login-btn small-btn" (click)="addCourse(courseName); courseName=''; newCourse = !newCourse">Save</button>
+        </div>
+        </div>
+        <span class="plus float-right mt-2" (click)="newCourse = !newCourse">+</span>
     </div>
 </div>
 <div class="row mt-5 mb-5">

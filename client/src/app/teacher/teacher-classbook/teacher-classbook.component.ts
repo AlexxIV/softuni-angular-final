@@ -9,12 +9,14 @@ import { TeacherService } from '../teacher.service';
   styleUrls: ['./teacher-classbook.component.scss']
 })
 export class TeacherClassbookComponent implements OnInit {
-  public studentId: string
-  public studentClassbook: StudentClassbook
+  public studentId: string;
+  public studentClassbook: StudentClassbook;
+  public newCourse: boolean = false;
+  public courseName: string;
   constructor(
-    private route : ActivatedRoute,
+    private route: ActivatedRoute,
     private teacherService: TeacherService
-  ) { 
+  ) {
     this.studentId = this.route.snapshot.params['id'];
   }
 
@@ -23,15 +25,32 @@ export class TeacherClassbookComponent implements OnInit {
       .getClassbook(this.studentId)
       .subscribe((response) => {
         this.studentClassbook = response['classbook'];
-        console.log(this.studentClassbook);
       })
   }
 
   addGrade(course, grade) {
     this.teacherService
       .addGrades(course, grade, this.studentClassbook['_id'])
-      .subscribe((response) => {
+      .subscribe(() => {
         this.studentClassbook.courses.find(c => c['name'] === course)['grades'].push(grade);
       })
+  }
+
+  addCourse(course) {
+    this.teacherService
+      .addCourse(course, this.studentClassbook['_id'])
+      .subscribe(() => {
+        this.studentClassbook.courses.push({
+          name: course,
+          grades: [],
+          classbook: this.studentClassbook['_id']
+        })
+      })
+  }
+  
+  delete(course) {
+    this.teacherService
+      .deleteCourse(course)
+      .subscribe()
   }
 }

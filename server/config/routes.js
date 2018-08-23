@@ -20,8 +20,15 @@ module.exports = (APP) => {
     APP.get('/teacher/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getTeacherInfo);
     APP.get('/teacher/classbook/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentClassbook);
     APP.post('/teacher/classbook/addGrade', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.addGrades);
+    APP.post('/teacher/classbook/addCourse', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.addCourse);
+    APP.post('/teacher/classbook/deleteCourse', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.deleteCourse);
     APP.delete('/teacher/delete/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.deleteStudent);
-    APP.get('/teacher/details/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentDetails)
+    APP.get('/teacher/details/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentDetails);
+    APP.get('/teacher/schedule/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getCurrentClassSchedule);
+    APP.post('/teacher/schedule/edit', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.editSchedule);
+    APP.get('/teacher/student/free', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentsWithoutTeacher);
+    APP.post('/teacher/student/add', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.addNewStudent);
+
 
     
     

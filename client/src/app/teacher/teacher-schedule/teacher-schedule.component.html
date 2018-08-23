@@ -1,0 +1,187 @@
+<div class="row mt-5 p-5" *ngIf="schedule">
+    <div class="col-md mb-5 mr-2 ml-2">
+      <div class="row">
+          <input
+          type="checkbox"
+          id="schedule.Monday"
+          name="schedule.Monday"
+          class="tgl tgl-flat"
+          [(ngModel)]="schedule.Monday.checked"
+          >
+          <label for="schedule.Monday" class="tgl-btn"></label>
+        <form (ngSubmit)="editSchedule(schedule.Monday, 'Monday'); schedule.Monday.checked = false">
+            <button class="login-btn save-button" *ngIf="schedule.Monday.checked" type="submit">Save</button>
+        <div class="col-12 schedule-head">
+          <h3 class="text-center">Monday</h3>
+        </div>
+        <div class="col-12 schedule-body" *ngFor="let subject of schedule.Monday; index as i">
+          <input 
+          class="form-control"
+          type="text"
+          name="{{subject}}"
+          value="{{i + 1}}. {{subject}}"
+          [disabled]="!schedule.Monday.checked"
+          >
+          <span class="delete-button" *ngIf="schedule.Monday.checked" (click)="schedule.Monday.splice(i, 1)">-</span>
+        </div>
+          <input
+          *ngIf="schedule.Monday.checked"
+          class="form-control" 
+          type="text"
+          [(ngModel)]="toAdd_Monday"
+          name="add"
+          >
+        <span class="float-right plus" *ngIf="schedule.Monday.checked" (click)="schedule.Monday.push(toAdd_Monday); toAdd_Monday = ''">+</span>
+        </form>
+      </div>
+    </div>
+    <div class="col-md mb-5 mr-2 ml-2">
+      <div class="row">
+          <input
+          type="checkbox"
+          id="schedule.Tuesday"
+          name="schedule.Tuesday"
+          class="tgl tgl-flat"
+          [(ngModel)]="schedule.Tuesday.checked"
+          >
+          <label for="schedule.Tuesday" class="tgl-btn"></label>
+        <form (ngSubmit)="editSchedule(schedule.Tuesday, 'Tuesday'); schedule.Tuesday.checked = false">
+            <button class="login-btn save-button" *ngIf="schedule.Tuesday.checked" type="submit">Save</button>
+        <div class="col-12 schedule-head">
+          <h3 class="text-center">Tuesday</h3>
+        </div>
+        <div class="col-12 schedule-body" *ngFor="let subject of schedule.Tuesday; index as i">
+          <input 
+          class="form-control"
+          type="text"
+          name="{{subject}}"
+          value="{{i + 1}}. {{subject}}"
+          [disabled]="!schedule.Tuesday.checked"
+          >
+          <span class="delete-button" *ngIf="schedule.Tuesday.checked" (click)="schedule.Tuesday.splice(i, 1)">-</span>          
+        </div>
+          <input
+          *ngIf="schedule.Tuesday.checked"
+          class="form-control" 
+          type="text"
+          [(ngModel)]="toAdd_Tuesday"
+          name="add"
+          >
+        <span class="float-right plus" *ngIf="schedule.Tuesday.checked" (click)="schedule.Tuesday.push(toAdd_Tuesday); toAdd_Tuesday = ''">+</span>
+        </form>
+      </div>
+    </div>
+    <div class="col-md mb-5 mr-2 ml-2">
+      <div class="row">
+          <input
+          type="checkbox"
+          id="schedule.Wednesday"
+          name="schedule.Wednesday"
+          class="tgl tgl-flat"
+          [(ngModel)]="schedule.Wednesday.checked"
+          >
+          <label for="schedule.Wednesday" class="tgl-btn"></label>
+        <form (ngSubmit)="editSchedule(schedule.Wednesday, 'Wednesday'); schedule.Wednesday.checked = false">
+            <button class="login-btn save-button" *ngIf="schedule.Wednesday.checked" type="submit">Save</button>
+        <div class="col-12 schedule-head">
+          <h3 class="text-center">Wednesday</h3>
+        </div>
+        <div class="col-12 schedule-body" *ngFor="let subject of schedule.Wednesday; index as i">
+          <input 
+          class="form-control"
+          type="text"
+          name="{{subject}}"
+          value="{{i + 1}}. {{subject}}"
+          [disabled]="!schedule.Wednesday.checked"
+          >
+          <span class="delete-button" *ngIf="schedule.Wednesday.checked" (click)="schedule.Wednesday.splice(i, 1)">-</span>
+        </div>
+          <input
+          *ngIf="schedule.Wednesday.checked"
+          class="form-control" 
+          type="text"
+          [(ngModel)]="toAdd_Wednesday"
+          name="add"
+          >
+        <span class="float-right plus" *ngIf="schedule.Wednesday.checked" (click)="schedule.Wednesday.push(toAdd_Wednesday); toAdd_Wednesday = ''">+</span>
+        </form>
+      </div>
+    </div>
+    <div class="col-md mb-5 mr-2 ml-2">
+      <div class="row">
+          <input
+          type="checkbox"
+          id="schedule.Thursday"
+          name="schedule.Thursday"
+          class="tgl tgl-flat"
+          [(ngModel)]="schedule.Thursday.checked"
+          >
+          <label for="schedule.Thursday" class="tgl-btn"></label>
+        <form (ngSubmit)="editSchedule(schedule.Thursday, 'Thursday'); schedule.Thursday.checked = false">
+            <button class="login-btn save-button" *ngIf="schedule.Thursday.checked" type="submit">Save</button>
+        <div class="col-12 schedule-head">
+          <h3 class="text-center">Thursday</h3>
+        </div>
+        <div class="col-12 schedule-body" *ngFor="let subject of schedule.Thursday; index as i">
+          <input 
+          class="form-control"
+          type="text"
+          name="{{subject}}"
+          value="{{i + 1}}. {{subject}}"
+          [disabled]="!schedule.Thursday.checked"
+          >
+          <span class="delete-button" *ngIf="schedule.Thursday.checked" (click)="schedule.Thursday.splice(i, 1)">-</span>
+        </div>
+          <input
+          *ngIf="schedule.Thursday.checked"
+          class="form-control" 
+          type="text"
+          [(ngModel)]="toAdd_Thursday"
+          name="add"
+          >
+        <span class="float-right plus" *ngIf="schedule.Thursday.checked" (click)="schedule.Thursday.push(toAdd_Thursday); toAdd_Thursday = ''">+</span>
+        </form>
+      </div>
+    </div>
+    <div class="col-md mb-5 mr-2 ml-2">
+      <div class="row">
+          <input
+          type="checkbox"
+          id="schedule.Friday"
+          name="schedule.Friday"
+          class="tgl tgl-flat"
+          [(ngModel)]="schedule.Friday.checked"
+          >
+          <label for="schedule.Friday" class="tgl-btn"></label>
+        <form (ngSubmit)="editSchedule(schedule.Friday, 'Friday'); schedule.Friday.checked = false">
+            <button class="login-btn save-button" *ngIf="schedule.Friday.checked" type="submit">Save</button>
+        <div class="col-12 schedule-head">
+          <h3 class="text-center">Friday</h3>
+        </div>
+        <div class="col-12 schedule-body" *ngFor="let subject of schedule.Friday; index as i">
+          <input 
+          class="form-control"
+          type="text"
+          name="{{subject}}"
+          value="{{i + 1}}. {{subject}}"
+          [disabled]="!schedule.Friday.checked"
+          >
+          <span class="delete-button" *ngIf="schedule.Friday.checked" (click)="schedule.Friday.splice(i, 1)">-</span>
+        </div>
+          <input
+          *ngIf="schedule.Friday.checked"
+          class="form-control" 
+          type="text"
+          [(ngModel)]="toAdd_Friday"
+          name="add"
+          >
+        <span class="float-right plus" *ngIf="schedule.Friday.checked" (click)="schedule.Friday.push(toAdd_Friday); toAdd_Friday = ''">+</span>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row p-5">
+      <div class="col">
+              <a routerLink="/teacher" class="login-btn">Back</a>
+      </div>
+  </div>

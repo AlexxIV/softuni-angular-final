@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../teacher.service';
 import { TeacherHome } from '../models/teacher-home';
+import { EditStudent } from '../models/edit-student';
 
 @Component({
   selector: 'app-teacher-home',
@@ -8,7 +9,8 @@ import { TeacherHome } from '../models/teacher-home';
   styleUrls: ['./teacher-home.component.scss']
 })
 export class TeacherHomeComponent implements OnInit {
-  teacher: TeacherHome
+  teacher: TeacherHome;
+  newStudents: EditStudent[];
 
   constructor(private teacherService: TeacherService) { }
 
@@ -18,14 +20,24 @@ export class TeacherHomeComponent implements OnInit {
       .subscribe((response) => {
         this.teacher = response['teacher'];
       })
+
+    this.teacherService
+      .getStudentsWithoutTeacher()
+      .subscribe((response) => {
+        this.newStudents = response['students'];
+      })
   }
 
   delete(id: string) {
     this.teacherService
       .deleteStudent(id)
-      .subscribe((response) => {
-        console.log(response);
-      })
+      .subscribe()
+  }
+
+  register(student) {
+    this.teacherService
+      .addStudent(student)
+      .subscribe()
   }
 
 }

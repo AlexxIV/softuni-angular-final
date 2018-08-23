@@ -110,7 +110,7 @@
               Please enter valid Id (Length: 10 symbols)
             </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" *ngIf="!userModel.isTeacher">
             <label for="student_class">Student Grade</label>
             <input
               type="number"
