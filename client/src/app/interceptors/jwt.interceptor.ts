@@ -45,12 +45,16 @@ export class JwtInterceptor implements HttpInterceptor {
                     }
 
                 }
-
+                
                 if (res instanceof HttpResponse && res.body.success && res.url.endsWith('register')
                     || res instanceof HttpResponse && res.body.success && res.url.endsWith('changepass')) {
                     localStorage.removeItem('currentUser');
                     this.toastr.success(res.body.message, 'Success!');
                     this.router.navigate(['/login']);
+                }
+
+                if (res instanceof HttpResponse && res.body.success && !res.body.token) {
+                    this.toastr.success(res.body.message, 'Success!');
                 }
             }));
     }

@@ -1,5 +1,6 @@
 const USER_CONTROLLER = require('../controllers/user');
 const STUDENT_CONTROLLER = require('../controllers/student');
+const TEACHER_CONTROLLER = require('../controllers/teacher');
 // const STAGE_CONTROLLER = require('../controllers/stage');
 // const TEAM_CONTROLLER = require('../controllers/team');
 // const RIDER_CONTROLLER = require('../controllers/rider');
@@ -15,6 +16,14 @@ module.exports = (APP) => {
     APP.get('/student/courses/all/:id', STUDENT_CONTROLLER.getAllGrades);
     APP.get('/student/courses/schedule/:id', STUDENT_CONTROLLER.getSchedule);
     APP.get('/student/:id', STUDENT_CONTROLLER.getStudentInfo);
+
+    APP.get('/teacher/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getTeacherInfo);
+    APP.get('/teacher/classbook/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentClassbook);
+    APP.post('/teacher/classbook/addGrade', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.addGrades);
+    APP.delete('/teacher/delete/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.deleteStudent);
+    APP.get('/teacher/details/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentDetails)
+
+    
     
     // APP.get('/stage/all', STAGE_CONTROLLER.getAll);
     // APP.get('/stage/details/:id', STAGE_CONTROLLER.getSingle);

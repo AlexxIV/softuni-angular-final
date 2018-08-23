@@ -1,0 +1,39 @@
+.thead-custom {
+    background: #2d2752;
+    color: #ffffff;
+}
+.btn {
+    color: #ffffff;
+    border-radius: 25px;
+}
+.btn-primary {
+    background: #2d2752;
+    border: 1px solid #2d2752;
+    &:hover {
+        text-decoration: none;
+        color: #110a20;
+        background-color: #faf5f7;
+        border-color: #110a20;
+    }
+}
+.btn-danger {
+    color: #faf5f7;
+    background: #fa473e;
+    border: 1px solid #fa473e;
+    &:hover {
+        text-decoration: none;
+        color: #fa473e;
+        background-color: #faf5f7;
+        border-color: #ee6658;
+    }
+}
+.btn-success {
+    background: #0ddf41;
+    border: 1px solid #0ddf41;
+    &:hover {
+        text-decoration: none;
+        color: #0ddf41;
+        background-color: #faf5f7;
+        border-color: #0ddf41;
+    }
+}

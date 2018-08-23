@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-8 mx-auto">
+      <h2 class="text-center mt-5" *ngIf="studentClassbook">
+        {{studentClassbook.owner.firstname}} {{studentClassbook.owner.lastname}} Classbook
+      </h2>
+        <table class="table mt-5" *ngIf="studentClassbook">
+            <thead class="thead-custom">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Grades</th>
+                    <th scope="col">Add Grades</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="studentClassbook.courses">
+                <tr *ngFor="let course of studentClassbook.courses; index as i">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{course.name}}</td>
+                    <td>
+                        <span *ngFor="let grade of course.grades" [ngClass]="{'highlight': grade===2, 'greenlight': grade===6}">{{grade}}
+                            </span>
+                    </td>
+                    <td>
+                            <input
+                              type="checkbox"
+                              id="{{course.name}}"
+                              name="{{course.name}}"
+                              class="tgl tgl-flat"
+                              [(ngModel)]="course.checked"
+                              >
+                              <label for="{{course.name}}" class="tgl-btn"></label>
+                    </td>
+                    <td *ngIf="course.checked">
+                            <form (ngSubmit)="addGrade(course.name, selectedValue)"> <!-- TODO-->
+                                <div class="form-group">
+                                  <select 
+                                  class="form-control" 
+                                  id="add_{{course.name}}" 
+                                  name="add_{{course.name}}"
+                                  [(ngModel)]="selectedValue">
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                  </select>
+                                  <br>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Add Grade</button>
+                              </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mt-5 mb-5">
+    <div class="col-8 mx-auto">
+        <a routerLink="/teacher" class="login-btn">Back</a>
+    </div>
+</div>

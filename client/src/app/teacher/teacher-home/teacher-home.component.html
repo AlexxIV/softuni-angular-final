@@ -1,3 +1,44 @@
-<p>
-  teacher-home works!
-</p>
+<div class="row mt-5 mb-1" *ngIf="teacher">
+  <div class="col-7 mx-auto">
+    <h1 class="text-center">Welcome {{teacher.firstname}} {{teacher.lastname}}</h1>
+  </div>
+  <div class="col-7 mx-auto" *ngIf="teacher.teacher_class[0]">
+    <h2 class="text-center" >Your class: {{teacher.teacher_class[0].student_class}}</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-8 mx-auto">
+    <table class="table mt-5" *ngIf="teacher">
+      <thead class="thead-custom">
+        <tr>
+          <th scope="col">Student #</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Grades</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="teacher.teacher_class">
+        <tr *ngFor="let student of teacher.teacher_class; index as i">
+          <th scope="row" *ngIf="student">{{i + 1}}</th>
+          <td>
+            {{student.firstname}}
+          </td>
+          <td>
+            {{student.lastname}}
+          </td>
+          <td>
+            <a class="btn btn-success btn-sm" routerLink="/teacher/classbook/{{student._id}}">
+              Classbook</a>
+          </td>
+          <td>
+            <a class="btn btn-success btn-sm mr-1" routerLink="/teacher/student/details/{{student._id}}">
+              Edit</a>
+            <button class="btn btn-danger btn-sm ml-1" (click)="delete(student._id); teacher.teacher_class.splice($index, 1)">
+              Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

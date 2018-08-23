@@ -14,12 +14,15 @@ module.exports = {
     },
 
     getSchedule: (req, res) => {
-        SCHEDULE.findOne({ owner: req.params.id })
+        USER.findById(req.params.id, ((err, user) => {
+            SCHEDULE.findOne({ student_class: user.student_class })
             .then((weeklySchedule) => {
                 return res.status(200).json({
                     weeklySchedule: weeklySchedule
                 });
             })
+        })) 
+        
     },
 
     getStudentInfo: (req, res) => {

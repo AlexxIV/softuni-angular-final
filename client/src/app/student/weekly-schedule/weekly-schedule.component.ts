@@ -20,6 +20,7 @@ export class WeeklyScheduleComponent implements OnInit {
       .getWeeklySchedule()
       .subscribe((response) => {
         this.schedule = response['weeklySchedule'];
+        console.log(this.schedule);
       })
     let data = new Date();
     switch (data.getDay()) {

@@ -4,6 +4,7 @@ const ENCRYPTION = require('../_helpers/encryption');
 
 const ROLE = require('mongoose').model('Role');
 const USER = require('mongoose').model('User');
+const SCHEDULE = require('mongoose').model('Schedule');
 
 
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
                 password: req.body.password,
                 personal_id: req.body.personal_id,
                 school_name: req.body.school_name,
-                student_class: req.body.student_class,
+                student_class: null,
                 teacher: null,
                 classbook: null,
                 schedule: null
@@ -30,6 +31,26 @@ module.exports = {
             if (req.body.isTeacher) {
                 user.isTeacher = true
                 role = 'Teacher'
+            }
+            if (req.body.student_class) {
+                user.student_class = req.body.student_class;
+
+                SCHEDULE.findOne({ student_class: req.body.student_class }).then((schedule) => {
+                    if (!schedule) {
+                        SCHEDULE.create({
+                            student_class: req.body.student_class,
+                            Monday: [],
+                            Tuesday: [],
+                            Wednesday: [],
+                            Thursday: [],
+                            Friday: []
+                        }).then((newSchedule) => {
+                            user.schedule = newSchedule._id;
+                        })
+                    } else {
+                        user.schedule = schedule._id;
+                    }
+                })
             }
 
             let salt = ENCRYPTION.generateSalt();
@@ -44,6 +65,7 @@ module.exports = {
                 USER.create(user).then((newUser) => {
                     role.users.push(newUser._id);
                     role.save();
+                    // TODO ADD CLASSBOOK
 
                     return done(null);
                 }).catch(() => {

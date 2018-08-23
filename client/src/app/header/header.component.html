@@ -20,7 +20,7 @@
           <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" (click)="expand()"
             routerLink="/student">Home</a>
           <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" (click)="expand()"
-            routerLink="/teacher">Home</a>
+            routerLink="/teacher">My Class</a>
             <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Admin'" (click)="expand()"
             routerLink="/admin">Home</a>
           <a class="nav-item" *ngIf="!authService._isAuthenticated()" (click)="expand()" routerLink="/user/login">Login</a>

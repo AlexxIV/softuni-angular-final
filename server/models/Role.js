@@ -32,7 +32,9 @@ module.exports.init = () => {
                     salt: salt,
                     password: passwordHash,
                     isAdmin: true,
-                    roles: [newRole._id]
+                    roles: [newRole._id],
+                    personal_id: '0000000000',
+                    school_name: 'Admin School'
                 };
 
                 USER.create(adminUser).then((user) => {
@@ -126,7 +128,7 @@ module.exports.init = () => {
                             newClassBook.save()
                         })
                         SCHEDULE.create({
-                            owner: nu._id,
+                            student_class: nu.student_class,
                             Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
                             Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
                             Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
@@ -199,14 +201,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {
@@ -277,14 +275,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {
@@ -355,14 +349,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {
@@ -434,14 +424,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {
@@ -513,14 +499,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {
@@ -592,14 +574,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {
@@ -671,14 +649,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {
@@ -751,14 +725,10 @@ module.exports.init = () => {
                                                                     newClassBook.courses = courses.map(c => c._id);
                                                                     newClassBook.save()
                                                                 })
-                                                                SCHEDULE.create({
-                                                                    owner: nu._id,
-                                                                    Monday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Tuesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Wednesday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Thursday: ['Biology', 'Math', 'Math', 'P.E', 'History'],
-                                                                    Friday: ['Biology', 'Math', 'Math', 'P.E', 'History']
-                                                                }).then((schedule) => {
+                                                                SCHEDULE.findOne({ student_class: nu.student_class }).then((schedule) => {
+                                                                    if (!schedule) {
+                                                                        //TODO
+                                                                    }
                                                                     USER.findById(nu._id).then((userToUpdate) => {
                                                                         USER.findOne({ email: 'test@teacher.com' })
                                                                             .then((teacher) => {

@@ -5,6 +5,11 @@ import { RegisterComponent } from './auth/register/register.component';
 import { StudentModule } from './student/student.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { AdminModule } from './admin/admin.module';
+import { AdminGuard } from './auth/admin.guard';
+import { TeacherGuard } from './auth/teacher.guard';
+import { AuthGuard } from './auth/auth.guard';
+import { StudentGuard } from './auth/student.guard';
+import { AnonGuard } from './auth/anon.guard';
 // import { SigninComponent } from './auth/signin/signin.component';
 // import { SignupComponent } from './auth/signup/signup.component';
 // import { AuthGuard } from './auth/auth.guard';
@@ -13,18 +18,27 @@ import { AdminModule } from './admin/admin.module';
 const routes: Route[] = [
     {
         path: 'user', children: [
-            { path: 'login', component: LoginComponent },
-            { path: 'register', component: RegisterComponent }
+            { path: 'login', component: LoginComponent,
+        canActivate: [AnonGuard] },
+            { path: 'register', component: RegisterComponent,
+        canActivate: [AnonGuard] }
         ]
     },
     {
-        path: 'student', loadChildren: () => StudentModule
+        path: 'admin', loadChildren: () => AdminModule,
+        canActivate: [AdminGuard]
     },
     {
-        path: 'teacher', loadChildren: () => TeacherModule
+        path: 'teacher', loadChildren: () => TeacherModule,
+        canActivate: [TeacherGuard]
     },
     {
-        path: 'admin', loadChildren: () => AdminModule
+        path: 'student', loadChildren: () => StudentModule,
+        canActivate: [StudentGuard]
+    },
+    {
+        path: '', pathMatch: 'full', component: LoginComponent,
+        canActivate: [AuthGuard]   
     },
     {
         path: '**', redirectTo: '/user/login'
