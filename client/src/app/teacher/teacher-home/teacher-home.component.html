@@ -5,7 +5,7 @@
   <div class="col-7 mx-auto" *ngIf="teacher.teacher_class[0]">
     <h2 class="text-center">Your class: {{teacher.teacher_class[0].student_class}}</h2>
   </div>
-  <div class="col-7 mx-auto mt-3 mb-3" *ngIf="teacher.teacher_class">
+  <div class="col-7 mx-auto mt-3 mb-3" *ngIf="teacher.teacher_class.length > 0">
     <div class="btn-container text-center">
       <a class="btn-success btn" routerLink="/teacher/schedule/{{teacher._id}}">
         Your class schedule</a>
@@ -37,7 +37,7 @@
         <td>
           {{student.student_class}}
         </td>
-        <td *ngIf="teacher">
+        <td *ngIf="teacher && teacher.teacher_class.length > 0">
           <button class="btn btn-success btn-sm" *ngIf="student.student_class === teacher.teacher_class[0].student_class" (click)="register(student); newStudents.splice(i, 1) ;teacher.teacher_class.push(student)">Register</button>
         </td>
       </tr>

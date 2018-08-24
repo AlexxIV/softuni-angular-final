@@ -28,9 +28,7 @@ export class TeacherScheduleComponent implements OnInit {
   editSchedule(arrayValue, arrayName) {
     this.teacherService
       .editSchedule(arrayValue, arrayName)
-      .subscribe((response) => {
-        console.log(response);
-      })
+      .subscribe()
   }
 
 

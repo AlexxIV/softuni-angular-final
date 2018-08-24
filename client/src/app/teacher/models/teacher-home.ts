@@ -5,6 +5,6 @@ export class TeacherHome {
         public lastname: string,
         public school_name: string,
         public personal_id: string,
-        public teacher_class: Object[]
+        public teacher_class?: Object[]
     ) { }
 }

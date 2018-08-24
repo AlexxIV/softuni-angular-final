@@ -10,14 +10,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { LoaderComponent } from './loader/loader.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,11 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true
     }
   ],

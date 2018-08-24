@@ -25,7 +25,7 @@ export class TeacherService {
 
     getTeacherHomeInfo() {
         return this.http
-            .get(this.baseUrl+this.authService._userIdHelper());
+            .get(`${this.baseUrl}`+this.authService._userIdHelper());
     }
 
     deleteStudent(id) {

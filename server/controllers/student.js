@@ -11,18 +11,32 @@ module.exports = {
                     courses: fullClassbook.courses
                 });
             })
+            .catch((err) => {
+                console.log(err);
+                return res.status(409).json({
+                    success: false,
+                    message: 'No courses found!'
+                })
+            })
     },
 
     getSchedule: (req, res) => {
         USER.findById(req.params.id, ((err, user) => {
             SCHEDULE.findOne({ student_class: user.student_class })
-            .then((weeklySchedule) => {
-                return res.status(200).json({
-                    weeklySchedule: weeklySchedule
-                });
-            })
-        })) 
-        
+                .then((weeklySchedule) => {
+                    return res.status(200).json({
+                        weeklySchedule: weeklySchedule
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    return res.status(409).json({
+                        success: false,
+                        message: err.message
+                    })
+                })
+        }))
+
     },
 
     getStudentInfo: (req, res) => {
@@ -31,6 +45,12 @@ module.exports = {
             .then((currentUser) => {
                 return res.status(200).json({
                     user: currentUser
+                })
+            })
+            .catch((err) => {
+                return res.status(409).json({
+                    success: false,
+                    message: err
                 })
             })
     }

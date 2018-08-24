@@ -23,7 +23,6 @@ export class TeacherStudentDetailsComponent implements OnInit {
       .getStudent(this.studentId)
       .subscribe((response) => {
         this.student = response['student'];
-        console.log(this.student);
       })
   }
 
