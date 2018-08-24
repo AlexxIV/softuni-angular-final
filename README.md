@@ -32,3 +32,10 @@ The application is split into three parts
 
 
 * To get started open favourite browser and go to http://localhost:4200
+
+#### Test data
+* Admin account: email: admin@admin.com password: admin
+
+* Teacher account: email: test@teacher.com password: test
+
+* Student account: email: test@student.com password: test
