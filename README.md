@@ -1,7 +1,7 @@
 # SIS
  School Information System
 ## Description
-A simple school information system providing access for students to their grades and schedules manipulated by their teachers.
+A simple school information system providing access for students to their grades and schedules manipulated by their teachers. Built with Angular6 with ExpressJS API and mongoDB database
 ## Design
 The application is split into three parts
 * Students area
