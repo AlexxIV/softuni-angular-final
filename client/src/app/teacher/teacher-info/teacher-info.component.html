@@ -1,0 +1,141 @@
+<div class="row mt-5" *ngIf="teacherModel">
+  <div class="col-xl-4 col-md-7 mx-auto">
+      <h3 class="text-center">Personal Info</h3>
+      <form #changePasswordForm="ngForm" (ngSubmit)="changeTeacherPassword()">
+          <div class="form-group" *ngIf="teacherModel.firstname !== ''">
+                  <label for="firstName">First Name</label>
+                  <input 
+                  type="text" 
+                  id="firstName"
+                  name="firstname"
+                  class="form-control"
+                  value = {{teacherModel.firstname}}
+                  disabled
+                  >
+          </div>
+          <div class="form-group" *ngIf="teacherModel.lastname !== ''">
+                  <label for="lastName">Last Name</label>
+                  <input 
+                  type="text" 
+                  id="lastName"
+                  name="lastname"
+                  class="form-control"
+                  value = {{teacherModel.lastname}}
+                  disabled
+                  >
+          </div>
+          <div class="form-group" *ngIf="teacherModel.personal_id !== ''">
+              <label for="personalId">Personal Id</label>
+              <input 
+              type="text" 
+              id="personalId"
+              name="personal_id"
+              class="form-control"
+              value = {{teacherModel.personal_id}}
+              disabled
+              >
+          </div>
+          <div class="form-group" *ngIf="teacherModel.email !== ''">
+                  <label for="email">Email</label>
+                  <input 
+                  type="email" 
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  value = {{teacherModel.email}}
+                  disabled
+                  >
+          </div>
+          <div class="form-group">
+                  <h6>Change Password</h6>
+                  <input
+                    type="checkbox"
+                    id="showPassword"
+                    name="showPassword"
+                    class="tgl tgl-flat"
+                    [(ngModel)]="showPasswordCheckbox"
+                    >
+                    <label for="showPassword" class="tgl-btn"></label>
+          </div>
+          <div *ngIf="showPasswordCheckbox">
+              <div class="form-group">
+                          <label for="oldPassword">Old Password</label>
+                          <input
+                          type="password"
+                          id="oldPassword"
+                          name="oldPassword"
+                          pattern="^.{3,30}"
+                          class="form-control"
+                          [(ngModel)]="teacherModel.oldPassword"
+                          required
+                          #oldPassword="ngModel"
+                          >
+                          <div [hidden]="oldPassword.valid || oldPassword.pristine" class="alert alert-danger">
+                              Password must be atleast 3 symbols.
+                          </div>
+              </div>
+              <div class="form-group">
+                          <label for="newPassword">New Password</label>
+                          <input
+                          type="password"
+                          id="newPassword"
+                          name="newPassword"
+                          class="form-control"
+                          [(ngModel)]="teacherModel.newPassword"
+                          required
+                          #newPassword="ngModel"
+                          >
+                          <div [hidden]="newPassword.valid || newPassword.pristine" class="alert alert-danger">
+                                  Password must be atleast 3 symbols.
+                          </div>
+                          <div [hidden]="newPassword.value === '' || newPassword.value != oldPassword.value" class="alert alert-danger">
+                                  New password must be different from old.
+                          </div>
+              </div>
+              <div class="form-group">
+                              <label for="newPassword">Confirm Password</label>
+                              <input
+                              type="password"
+                              id="confirmedPassword"
+                              name="confirmedPassword"
+                              class="form-control"
+                              [(ngModel)]="teacherModel.confirmedPassword"
+                              required
+                              #confirmedPassword="ngModel"
+                              >
+                              <div [hidden]="newPassword.value === confirmedPassword.value || confirmedPassword.pristine || !confirmedPassword.value" class="alert alert-danger">
+                                  Both passwords should match
+                              </div>
+              </div>
+              <div class="form-group">
+              <button class="btn btn-primary signup-btn" [disabled]="changePasswordForm.invalid"  type="submit">Change Password</button>
+              </div>
+          </div>
+          </form>
+  </div>
+  <div class="col-xl-4 col-md-7 mx-auto">
+      <h3 class="text-center">School Info</h3>
+      <div class="form-group" *ngIf="teacherModel.school_name !== ''">
+          <label for="schoolName">School Name</label>
+          <input 
+          type="text" 
+          id="schoolName"
+          name="schoolName"
+          class="form-control"
+          value = {{teacherModel.school_name}}
+          disabled
+          >
+      </div>
+      <div class="form-group" *ngIf="teacherModel.teacher_class_ref !== null">
+          <label for="schoolGrade">Teacher Class</label>
+          <input 
+          type="text" 
+          id="grade"
+          name="grade"
+          class="form-control"
+          value = {{teacherModel.teacher_class_ref}}
+          disabled
+          >
+      </div>
+  </div>
+</div>

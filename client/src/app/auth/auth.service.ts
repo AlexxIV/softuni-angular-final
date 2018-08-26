@@ -34,10 +34,10 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('currentUser');
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
     }
 
-    changePassword(body: Student) {
+    changePassword(body: Object) {
         return this.http
             .post(this.baseUrl + this.changePassUrl, body)
     }

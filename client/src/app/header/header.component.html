@@ -17,8 +17,11 @@
         <nav class="nav clearfix">
           <span *ngIf="authService._isAuthenticated()" class="nav-item not-pointer">Hi {{authService._userNameHelper()}}!</span>
           <a class="nav-item" *ngIf="authService._isAuthenticated()" (click)="authService.logout(); expand()">Logout</a>
+          <a class="nav-item" *ngIf="!authService._isAuthenticated()" (click)="expand()" routerLink="/" >Home</a>
           <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Student'" (click)="expand()"
             routerLink="/student">Home</a>
+            <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" (click)="expand()"
+            routerLink="/teacher/info">My profile</a>
           <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" (click)="expand()"
             routerLink="/teacher">My Class</a>
           <a class="nav-item" *ngIf="authService._isAuthenticated() && authService._userRoleHelper() === 'Teacher'" (click)="expand()"

@@ -126,6 +126,22 @@
                 Please enter valid grade (5-12)
               </div>
       </div>
+      <div class="form-group" *ngIf="userModel.isTeacher">
+        <label for="student_class">Teacher Grade</label>
+        <input
+          type="number"
+          id="teacherClassRef"
+          name="teacher_class_ref"
+          class="form-control"
+          pattern="^([5-9]|[10-12]{2,})$"
+          [(ngModel)]="userModel.teacher_class_ref"
+          required
+          #teacher_class_ref="ngModel"
+          >
+          <div [hidden]="teacher_class_ref.valid || teacher_class_ref.pristine" class="alert alert-danger">
+            Please enter valid grade (5-12)
+          </div>
+  </div>
       <div class="form-group">
               <label for="schoolName">School Name</label>
               <input

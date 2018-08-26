@@ -17,7 +17,7 @@ module.exports = {
             if (err) {
                 return res.status(409).json({
                     success: false,
-                    message: 'Username already taken'
+                    message: err
                 });
             }
 

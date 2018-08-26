@@ -18,6 +18,7 @@ const USER_SCHEMA = MONGOOSE.Schema({
     classbook: { type: OBJECT_ID, ref: 'ClassBook' },
     schedule: { type: OBJECT_ID, ref: 'Schedule' },
     teacher: { type: OBJECT_ID, ref: 'User'},
+    teacher_class_ref: { type: NUMBER },
     teacher_class: [{ type: OBJECT_ID, ref: 'User' }],
     student_class: { type: NUMBER },
     createdDate: { type: Date, default: Date.now },

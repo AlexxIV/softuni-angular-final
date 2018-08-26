@@ -6,13 +6,15 @@ import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
 import { TeacherClassbookComponent } from './teacher-classbook/teacher-classbook.component';
 import { TeacherStudentDetailsComponent } from './teacher-student-details/teacher-student-details.component';
 import { TeacherScheduleComponent } from './teacher-schedule/teacher-schedule.component';
+import { TeacherInfoComponent } from './teacher-info/teacher-info.component';
 
 @NgModule({
     declarations: [
     TeacherHomeComponent,
     TeacherClassbookComponent,
     TeacherStudentDetailsComponent,
-    TeacherScheduleComponent],
+    TeacherScheduleComponent,
+    TeacherInfoComponent],
     imports: [
         CommonModule,
         FormsModule,

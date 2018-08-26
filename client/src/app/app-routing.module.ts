@@ -10,10 +10,7 @@ import { TeacherGuard } from './auth/teacher.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { StudentGuard } from './auth/student.guard';
 import { AnonGuard } from './auth/anon.guard';
-// import { SigninComponent } from './auth/signin/signin.component';
-// import { SignupComponent } from './auth/signup/signup.component';
-// import { AuthGuard } from './auth/auth.guard';
-// import { RecipeModule } from './recipe/recipe.module';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Route[] = [
     {
@@ -37,7 +34,7 @@ const routes: Route[] = [
         canActivate: [StudentGuard]
     },
     {
-        path: '', pathMatch: 'full', component: LoginComponent,
+        path: '', pathMatch: 'full', component: HomepageComponent,
         canActivate: [AuthGuard]   
     },
     {

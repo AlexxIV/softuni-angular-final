@@ -14,6 +14,7 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 
@@ -22,7 +23,8 @@ import { FooterComponent } from './footer/footer.component';
     AppComponent,
     HeaderComponent,
     LoaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

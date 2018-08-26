@@ -58,6 +58,7 @@ module.exports.init = () => {
                     password: passwordHash,
                     isTeacher: true,
                     roles: [newRole._id],
+                    teacher_class_ref: 6,
                     personal_id: '7604124356',
                     school_name: 'Test School'
                 };

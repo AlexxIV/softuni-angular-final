@@ -24,6 +24,7 @@ module.exports = {
                 school_name: req.body.school_name,
                 student_class: null,
                 teacher: null,
+                teacher_class_ref: null,
                 classbook: null,
                 schedule: null
             };
@@ -31,6 +32,12 @@ module.exports = {
             if (req.body.isTeacher) {
                 user.isTeacher = true
                 role = 'Teacher'
+                USER.findOne({ teacher_class_ref: req.body.teacher_class_ref }).then((teacher) => {
+                    if (teacher) {
+                        return done('Teacher already exist assigned to this grade', false)
+                    }
+                })
+                user.teacher_class_ref = req.body.teacher_class_ref
             }
             if (req.body.student_class) {
                 user.student_class = req.body.student_class;
@@ -68,8 +75,8 @@ module.exports = {
                     // TODO ADD CLASSBOOK
 
                     return done(null);
-                }).catch(() => {
-                    return done('Registration Error', false);
+                }).catch((err) => {
+                    return done('Username already exist', false);
                 });
             });
         }
