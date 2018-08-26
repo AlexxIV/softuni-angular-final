@@ -1,3 +1,92 @@
-<p>
-  admin-home works!
-</p>
+<div class="row">
+  <div class="col-8 mx-auto">
+    <h2>All Users</h2>
+    <h3 class="mt-5" *ngIf="admins">Admins</h3>
+    <table class="table" *ngIf="admins">
+      <thead class="thead-custom">
+        <tr>
+          <th scope="col">User #</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let admin of admins; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>
+            {{admin.firstname}}
+          </td>
+          <td>
+            {{admin.lastname}}
+          </td>
+          <td>
+            Admin
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="mt-5" *ngIf="teachers">Teachers</h3>
+    <table class="table" *ngIf="teachers">
+      <thead class="thead-custom">
+        <tr>
+          <th scope="col">User #</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let teacher of teachers; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>
+            {{teacher.firstname}}
+          </td>
+          <td>
+            {{teacher.lastname}}
+          </td>
+          <td>
+            Teacher
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm ml-1" (click)="delete(teacher._id); teachers.splice(i, 1)">
+              Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="mt-5" *ngIf="students">Students</h3>
+    <table class="table" *ngIf="students">
+      <thead class="thead-custom">
+        <tr>
+          <th scope="col">User #</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>
+            {{student.firstname}}
+          </td>
+          <td>
+            {{student.lastname}}
+          </td>
+          <td>
+            Student
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm ml-1" (click)="delete(student._id); students.splice(i, 1)">
+              Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

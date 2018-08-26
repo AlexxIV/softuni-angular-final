@@ -1,6 +1,7 @@
 const USER_CONTROLLER = require('../controllers/user');
 const STUDENT_CONTROLLER = require('../controllers/student');
 const TEACHER_CONTROLLER = require('../controllers/teacher');
+const ADMIN_CONTROLLER = require('../controllers/admin');
 // const STAGE_CONTROLLER = require('../controllers/stage');
 // const TEAM_CONTROLLER = require('../controllers/team');
 // const RIDER_CONTROLLER = require('../controllers/rider');
@@ -24,11 +25,15 @@ module.exports = (APP) => {
     APP.post('/teacher/classbook/deleteCourse', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.deleteCourse);
     APP.delete('/teacher/delete/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.deleteStudent);
     APP.get('/teacher/details/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentDetails);
+    APP.post('/teacher/details/student/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.updateStudent);
     APP.get('/teacher/schedule/:id', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getCurrentClassSchedule);
     APP.post('/teacher/schedule/edit', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.editSchedule);
     APP.get('/teacher/student/free', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.getStudentsWithoutTeacher);
     APP.post('/teacher/student/add', AUTH.isInRole('Teacher'), TEACHER_CONTROLLER.addNewStudent);
 
+
+    APP.get('/admin/all', AUTH.isInRole('Admin'), ADMIN_CONTROLLER.getAll);
+    APP.delete('/admin/:id', AUTH.isInRole('Admin'), ADMIN_CONTROLLER.delete);
 
     
     

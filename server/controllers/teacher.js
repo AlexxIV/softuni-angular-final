@@ -243,5 +243,27 @@ module.exports = {
                     message: err
                 });
             })
+    },
+
+    updateStudent: (req, res) => {
+        USER.findOne({ _id: req.params.id }).then((student) => {
+            student.firstname = req.body.firstname;
+            student.lastname = req.body.lastname;
+            student.email = req.body.email;
+            student.personal_id = req.body.personal_id;
+            student.school_name = req.body.school_name;
+            student.student_class = req.body.student_class;
+            student.save();
+        }).then(() => {
+            return res.status(200).json({
+                success: true,
+                message: 'Student updated successfully!'
+            })
+        }).catch((err) => {
+            return res.status(409).json({
+                success: false,
+                message: err
+            })
+        })
     }
 }

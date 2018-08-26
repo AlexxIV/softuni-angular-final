@@ -78,4 +78,9 @@ export class TeacherService {
             .get(`${this.baseUrl}${this.newStudentsUrl}`);
     }
 
+    updateStudent(id, body) {
+        return this.http
+            .post(`${this.baseUrl}${this.getStudentUrl}`+id, body);
+    }
+
 }

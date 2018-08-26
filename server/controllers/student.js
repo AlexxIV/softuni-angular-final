@@ -12,7 +12,6 @@ module.exports = {
                 });
             })
             .catch((err) => {
-                console.log(err);
                 return res.status(409).json({
                     success: false,
                     message: 'No courses found!'
@@ -29,7 +28,6 @@ module.exports = {
                     });
                 })
                 .catch((err) => {
-                    console.log(err);
                     return res.status(409).json({
                         success: false,
                         message: err.message

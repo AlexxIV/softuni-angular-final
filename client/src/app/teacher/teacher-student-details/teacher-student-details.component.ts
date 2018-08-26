@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./teacher-student-details.component.scss']
 })
 export class TeacherStudentDetailsComponent implements OnInit {
-  student: EditStudent
+  studentModel: EditStudent
   studentId: string
   constructor(
     private teacherService: TeacherService,
@@ -22,8 +22,14 @@ export class TeacherStudentDetailsComponent implements OnInit {
     this.teacherService
       .getStudent(this.studentId)
       .subscribe((response) => {
-        this.student = response['student'];
+        this.studentModel = response['student'];
       })
+  }
+
+  updateStudent() {
+    this.teacherService
+      .updateStudent(this.studentId, this.studentModel)
+      .subscribe()
   }
 
 }

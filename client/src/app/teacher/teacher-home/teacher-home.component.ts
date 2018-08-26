@@ -19,7 +19,6 @@ export class TeacherHomeComponent implements OnInit {
       .getTeacherHomeInfo()
       .subscribe((response) => {
         this.teacher = response['teacher'];
-        console.log(this.teacher);
       })
 
     this.teacherService

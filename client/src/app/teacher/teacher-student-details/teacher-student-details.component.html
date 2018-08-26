@@ -1,3 +1,91 @@
-<p>
-  teacher-student-details works!
-</p>
+    <form #changePasswordForm="ngForm" (ngSubmit)="updateStudent()">
+        <div class="row mt-5" *ngIf="studentModel">
+          <div class="col-1 mx-auto">
+              <div class="form-group">
+                  <h6>Edit Info</h6>
+                  <input
+                    type="checkbox"
+                    id="editUnlock"
+                    name="editUnlock"
+                    class="tgl tgl-flat"
+                    [(ngModel)]="editUnlock"
+                    >
+                    <label for="editUnlock" class="tgl-btn"></label>
+              </div>
+          </div>
+          </div>
+          <div class="row"  *ngIf="studentModel">
+  <div class="col-xl-4 col-md-7 mx-auto">
+      <h3 class="text-center">Personal Info</h3>
+          <div class="form-group" *ngIf="studentModel.firstname !== ''">
+                  <label for="firstName">First Name</label>
+                  <input 
+                  type="text" 
+                  id="firstName"
+                  name="firstname"
+                  class="form-control"
+                  value = {{studentModel.firstname}}
+                  [(ngModel)]="studentModel.firstname"
+                  [disabled]="!editUnlock"
+                  >
+          </div>
+          <div class="form-group" *ngIf="studentModel.lastname !== ''">
+                  <label for="lastName">Last Name</label>
+                  <input 
+                  type="text" 
+                  id="lastName"
+                  name="lastname"
+                  class="form-control"
+                  value = {{studentModel.lastname}}
+                  [(ngModel)]="studentModel.lastname"
+                  [disabled]="!editUnlock"
+                  >
+          </div>
+          <div class="form-group" *ngIf="studentModel.personal_id !== ''">
+              <label for="personalId">Personal Id</label>
+              <input 
+              type="text" 
+              id="personalId"
+              name="personal_id"
+              class="form-control"
+              value = {{studentModel.personal_id}}
+              [(ngModel)]="studentModel.personal_id"
+              [disabled]="!editUnlock"
+              >
+          </div>
+          <div class="form-group" *ngIf="studentModel.email !== ''">
+                  <label for="email">Email</label>
+                  <input 
+                  type="email" 
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  value = {{studentModel.email}}
+                  [(ngModel)]="studentModel.email"
+                  [disabled]="!editUnlock"
+                  >
+          </div>
+         
+  </div>
+  <div class="col-xl-4 col-md-7 mx-auto">
+      <h3 class="text-center">School Info</h3>
+      <div class="form-group" *ngIf="studentModel.school_name !== ''">
+          <label for="schoolName">School Name</label>
+          <input 
+          type="text" 
+          id="schoolName"
+          name="schoolName"
+          class="form-control"
+          value = {{studentModel.school_name}}
+          [(ngModel)]="studentModel.school_name"
+          [disabled]="!editUnlock"
+          >
+      </div>
+       <div class="form-group mt-5">
+          <a routerLink="/teacher" class="login-btn float-left">Back</a>
+          <button class="success-btn float-right" *ngIf="editUnlock"  type="submit">Save</button>
+       </div>
+  </div>
+
+</div>
+</form>
